@@ -180,217 +180,20 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>新的一年要勇敢的迈出第一步，尝试去做做代码以外的工作，先从文档管理下手，第一步想到要建立一个团队的知识共享机制，原来团队的资源都存放在SVN上，搜索及管理很不方便，而且没有专人去监督管理，文档质量也是参差不齐，同事离职交接也是个大问题。对比了几个知识库产品后，比如dukuwiki,tikiwiki，发现还是confluence最强大，只是它是收费的。</p>
-<p>安装破解confluence着实花费了我不少精力，安装了不下20遍，按下葫芦起了瓢，google到眼都快瞎了，要不是强迫症重度患者，真的想撂挑子不装了，随便再找一个开源知识库算球。现在趁热打铁记录一下整个安解及破解过程，以防再装的时候撞墙，费话少说，上车。</p>
 <h2 id="confluence是什么？"><a href="#confluence是什么？" class="headerlink" title="confluence是什么？"></a>confluence是什么？</h2><p>   <a href="https://baike.baidu.com/item/Confluence" target="_blank" rel="noopener">confluence</a>是Atlassian公司开发的团队协同与知识管理工具,能够帮助团队成员之间共享信息、文档协作、集体讨论，信息推送。</p>
 <h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><ul>
 <li>system: linux7 64位 </li>
 <li>mysql: 5.6版本</li>
 <li>conflucence: 6.9.1版本 </li>
-<li>[atlassian-agent.jar: 1.2版本]（<a href="https://github.com/pengzhile/atlassian-agent）" target="_blank" rel="noopener">https://github.com/pengzhile/atlassian-agent）</a></li>
+<li><a href="https://github.com/pengzhile/atlassian-agent" target="_blank" rel="noopener">atlassian-agent.jar: 1.2版本</a> 感谢大神写的破解程序，仅限于个人学习交流哦。</li>
 <li><p>JDK:1.8</p>
-<p><strong>吐血提醒：</strong></p>
-<p>1、确定你在安装的过程中关掉<strong>VPN</strong>，比如翻墙软件，尤其是安装阶段。<br>2、确保安装阶段，浏览器只打开一个页面，关掉其它的页面，<strong>切记</strong>。否则可能会报spring的实例化问题。<br>3、最好使用我准备好的软件列表，因为可能会有版本冲突问题。<br>4、要配置好linux的hostname及hosts，如下配置示例（注意配置完后一定要确保生效）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ [root@R540-148 ~]<span class="comment"># cat /etc/hosts</span></span><br><span class="line">  127.0.0.1 localhost R540-148 </span><br><span class="line">  10.1.198.148 R540-148</span><br><span class="line">  10.1.53.141 141_linux_7</span><br><span class="line">$ [root@R540-148 ~]<span class="comment"># cat /etc/hostname</span></span><br><span class="line">  R540-148</span><br><span class="line">$ [root@R540-148 ~]<span class="comment"># ping `cat /etc/hostname`</span></span><br><span class="line"> PING localhost (127.0.0.1) 56(84) bytes of data.</span><br><span class="line"> 64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.016 ms</span><br><span class="line"> 64 bytes from localhost (127.0.0.1): icmp_seq=2 ttl=64 time=0.027 ms</span><br><span class="line"> 64 bytes from localhost (127.0.0.1): icmp_seq=3 ttl=64 time=0.026 ms</span><br><span class="line"> 64 bytes from localhost (127.0.0.1): icmp_seq=4 ttl=64 time=0.027 ms</span><br><span class="line"> 64 bytes from localhost (127.0.0.1): icmp_seq=5 ttl=64 time=0.025 ms</span><br><span class="line"> ^C</span><br><span class="line"> --- localhost ping statistics ---</span><br><span class="line"> 5 packets transmitted, 5 received, 0% packet loss, time 4000ms</span><br><span class="line"> rtt min/avg/max/mdev = 0.016/0.024/0.027/0.005 ms</span><br></pre></td></tr></table></figure>
-<p>如果host没有配置好，可能会出现报错：<a href="https://confluence.atlassian.com/confkb/confluence-generates-confluence-is-vacant-error-on-install-779164449.html" target="_blank" rel="noopener">Confluence generates Confluence is vacant error on install</a> </p>
-</li>
-</ul>
-<h2 id="安装文件"><a href="#安装文件" class="headerlink" title="安装文件"></a>安装文件</h2><ul>
-<li><p>所有的安装使用到的文档，我已上传至百度网盘：<br><em>但是鉴于经常被百度和谐，且我的博客评论插件还没有搭建好，下载不到安装文件的可给我写邮件索要，我的邮件地址：<a href="mailto:qinjing666@163.com" target="_blank" rel="noopener">qinjing666@163.com</a></em></p>
-</li>
-<li><p>安装文档主要内容有：</p>
-<ul>
-<li>atlassian-agent.jar  破解程序</li>
-<li>mysql-connector-java-5.1.42-bin.jar mysql驱动(原来我使用的是5.1.47，DB的环节一安装就报错，后来看官网上说这个版本是他们测试过的，我就换这个了，但确实好使了，所以能少走弯路就少走)</li>
-<li>atlassian-confluence-6.9.1-x64.bin 安装文件</li>
-<li>drawio-confluence-plugin-8.3.1.obr,插件包是我已经下载(可能需要翻墙，否则可能速度不给力或者直接打不开)下来，用来测试破解插件.</li>
-</ul>
-<p>有了上述安装文件，可以破解confluence及其插件（很多优秀的插件也是要收费的）。</p>
-</li>
-</ul>
-<h3 id="安装confluence主程序"><a href="#安装confluence主程序" class="headerlink" title="安装confluence主程序"></a>安装confluence主程序</h3><p>我使用的是root用户，安装过程中会自动创建一个用户confluence（如果你安装多次的话，需要先删除这个用户，否则会再创建一个confluence1,confluence2…），故安装完成后，可切换至confluence用户继续。</p>
-<p>开始之前，先将如下文件上传至服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@R540-148 ~]<span class="comment"># ls -l</span></span><br><span class="line">total 581236</span><br><span class="line">-rw-r--r--. 1 root root    818083 Dec 10 13:37 atlassian-agent.jar</span><br><span class="line">-rwxr-xr-x. 1 root root 593360927 Jun  4  2018 atlassian-confluence-6.9.1-x64.bin</span><br><span class="line">-rw-r--r--. 1 root root    996444 Jan  3 11:11 mysql-connector-java-5.1.42-bin.jar</span><br></pre></td></tr></table></figure></p>
-<h4 id="1-安装confluence"><a href="#1-安装confluence" class="headerlink" title="1. 安装confluence"></a>1. 安装confluence</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@R540-148 ~]<span class="comment"># ./atlassian-confluence-6.9.1-x64.bin </span></span><br><span class="line">Unpacking JRE ...</span><br><span class="line">Starting Installer ...</span><br><span class="line"></span><br><span class="line">This will install Confluence 6.9.1 on your computer.</span><br><span class="line">OK [o, Enter], Cancel [c]</span><br></pre></td></tr></table></figure>
-<p>输入字母o </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">o</span><br><span class="line">Click Next to <span class="built_in">continue</span>, or Cancel to <span class="built_in">exit</span> Setup.</span><br><span class="line"></span><br><span class="line">Choose the appropriate installation or upgrade option.</span><br><span class="line">Please choose one of the following:</span><br><span class="line">Express Install (uses default settings) [1], </span><br><span class="line">Custom Install (recommended <span class="keyword">for</span> advanced users) [2, Enter], </span><br><span class="line">Upgrade an existing Confluence installation [3]</span><br></pre></td></tr></table></figure>
-<p>输入数字2</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">Select the folder <span class="built_in">where</span> you would like Confluence 6.9.1 to be installed,</span><br><span class="line"><span class="keyword">then</span> click Next.</span><br><span class="line">Where should Confluence 6.9.1 be installed?</span><br><span class="line">[/opt/atlassian/confluence]</span><br></pre></td></tr></table></figure>
-<p>输入新的安装路径，或者是默认路径，请记住这个默认路径<br>/home/confluence/atlassian/confluence</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/home/confluence/atlassian/confluence</span><br><span class="line">Default location <span class="keyword">for</span> Confluence data</span><br><span class="line">[/var/atlassian/application-data/confluence]</span><br></pre></td></tr></table></figure>
-<p>输入新的数据存放路径，或者是默认路径，请记住这个默认路径<br>/home/confluence/atlassian/application-data/confluence</p>
-<pre><code class="bash">/home/confluence/atlassian/application-data/confluence
-
-Configure <span class="built_in">which</span> ports Confluence will use.
-Confluence requires two TCP ports that are not being used by any other
-applications on this machine. The HTTP port is <span class="built_in">where</span> you will access
-Confluence through your browser. The Control port is used to Startup and
-Shutdown Confluence.
-Use default ports (HTTP: 8090, Control: 8000) - Recommended [1, Enter], Set custom value <span class="keyword">for</span> HTTP and Control ports [2]
-</code></pre>
-<p>如果使用默认端口，就直接按回车,也可以更改端口信息</p>
-<pre><code class="bash">Confluence can be run <span class="keyword">in</span> the background.
-You may choose to run Confluence as a service, <span class="built_in">which</span> means it will start
-automatically whenever the computer restarts.
-Install Confluence as Service?
-Yes [y, Enter], No [n]
-</code></pre>
-<p>输入y</p>
-<pre><code class="bash">y
-
-Extracting files ...
-
-
-Please <span class="built_in">wait</span> a few moments <span class="keyword">while</span> we configure Confluence.
-
-Installation of Confluence 6.9.1 is complete
-Start Confluence now?
-Yes [y, Enter], No [n]
-</code></pre>
-<p>输入n</p>
-<pre><code class="bash">n
-
-Installation of Confluence 6.9.1 is complete
-Finishing installation ...
-</code></pre>
-<p>出现上述的文字，证明已经安装成功了</p>
-<h4 id="2-破解confluence"><a href="#2-破解confluence" class="headerlink" title="2. 破解confluence"></a>2. 破解confluence</h4><p>将破解程序放至一个目录下，如下所示（这个目录随意）</p>
-<pre><code class="bash">[root@R540-148 atlassian]<span class="comment"># mv /root/atlassian-agent.jar  /home/confluence/atlassian/</span>
-</code></pre>
-<p>然后编辑java启动加载类文件配置，</p>
-<pre><code class="bash">[root@R540-148 atlassian]<span class="comment"># vi /home/confluence/atlassian/confluence/bin/setenv.sh</span>
-</code></pre>
-<p>在文件中添加一行：<br>CATALINA_OPTS=”-javaagent:/home/confluence/atlassian/atlassian-agent.jar ${CATALINA_OPTS}”<br>如下所示：</p>
-<pre><code class="bash"><span class="comment"># http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html</span>
-
-CATALINA_OPTS=<span class="string">"-javaagent:/home/confluence/atlassian/atlassian-agent.jar <span class="variable">${CATALINA_OPTS}</span>"</span>
-
-CATALINA_OPTS=<span class="string">"-XX:-PrintGCDetails -XX:+PrintGCDateStamps -XX:-PrintTenuringDistribution <span class="variable">${CATALINA_OPTS}</span>"</span>
-CATALINA_OPTS=<span class="string">"-Xloggc:<span class="variable">$LOGBASEABS</span>/logs/gc-`date +%F_%H-%M-%S`.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=2M <span class="variable">${CATALINA_OPTS}</span>"</span>
-CATALINA_OPTS=<span class="string">"-XX:G1ReservePercent=20 <span class="variable">${CATALINA_OPTS}</span>"</span>
-CATALINA_OPTS=<span class="string">"-Djava.awt.headless=true <span class="variable">${CATALINA_OPTS}</span>"</span>
-CATALINA_OPTS=<span class="string">"-Datlassian.plugins.enable.wait=300 <span class="variable">${CATALINA_OPTS}</span>"</span>
-CATALINA_OPTS=<span class="string">"-Xms1024m -Xmx1024m -XX:+UseG1GC <span class="variable">${CATALINA_OPTS}</span>"</span>
-CATALINA_OPTS=<span class="string">"-Dsynchrony.enable.xhr.fallback=true <span class="variable">${CATALINA_OPTS}</span>"</span>
-CATALINA_OPTS=<span class="string">"-Dorg.apache.tomcat.websocket.DEFAULT_BUFFER_SIZE=32768 <span class="variable">${CATALINA_OPTS}</span>"</span>
-CATALINA_OPTS=<span class="string">"<span class="variable">${START_CONFLUENCE_JAVA_OPTS}</span> <span class="variable">${CATALINA_OPTS}</span>"</span>
-CATALINA_OPTS=<span class="string">"-Dconfluence.context.path=<span class="variable">${CONFLUENCE_CONTEXT_PATH}</span> <span class="variable">${CATALINA_OPTS}</span>"</span>
-</code></pre>
-<h4 id="3-安装mysql驱动"><a href="#3-安装mysql驱动" class="headerlink" title="3. 安装mysql驱动"></a>3. 安装mysql驱动</h4><pre><code class="bash">[root@R540-148 atlassian]<span class="comment"># mv /root/mysql-connector-java-5.1.42-bin.jar /home/confluence/atlassian/confluence/confluence/WEB-INF/lib/</span>
-</code></pre>
-<h4 id="4-启动程序"><a href="#4-启动程序" class="headerlink" title="4. 启动程序"></a>4. 启动程序</h4><pre><code class="bash">[root@R540-148 atlassian]<span class="comment"># su confluence</span>
-
-bash-4.2$ sh /home/confluence/atlassian/confluence/bin/start-confluence.sh
-
-To run Confluence <span class="keyword">in</span> the foreground, start the server with start-confluence.sh -<span class="built_in">fg</span>
-executing as current user
-If you encounter issues starting up Confluence, please see the Installation guide at http://confluence.atlassian.com/display/DOC/Confluence+Installation+Guide
-
-Server startup logs are located <span class="keyword">in</span> /home/confluence/atlassian/confluence/logs/catalina.out
----------------------------------------------------------------------------
-Using Java: /home/confluence/atlassian/confluence/jre//bin/java
-2019-01-04 17:04:15,179 INFO [main] [atlassian.confluence.bootstrap.SynchronyProxyWatchdog] A Context element <span class="keyword">for</span> <span class="variable">${confluence.context.path}</span>/synchrony-proxy is found <span class="keyword">in</span> /home/confluence/atlassian/confluence/conf/server.xml. No further action is required
----------------------------------------------------------------------------
-Using CATALINA_BASE:   /home/confluence/atlassian/confluence
-Using CATALINA_HOME:   /home/confluence/atlassian/confluence
-Using CATALINA_TMPDIR: /home/confluence/atlassian/confluence/temp
-Using JRE_HOME:        /home/confluence/atlassian/confluence/jre/
-Using CLASSPATH:       /home/confluence/atlassian/confluence/bin/bootstrap.jar:/home/confluence/atlassian/confluence/bin/tomcat-juli.jar
-Using CATALINA_PID:    /home/confluence/atlassian/confluence/work/catalina.pid
-Tomcat started.
-bash-4.2$ 
-</code></pre>
-<p>证明程序已经启动了，确认一下破解程序是否起作用了：</p>
-<pre><code class="bash">ion.RequestMappingHandlerMapping.register Mapped <span class="string">"{[/healthcheck]}"</span> onto public com.atlassian.synchrony.proxy.web.HealthCheckResult com.atlassian.synchrony.proxy.web.SynchronyProxyRestController.getSynchronyProxyInfo()
-04-Jan-2019 17:04:19.140 INFO [localhost-startStop-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.register Mapped <span class="string">"{[/reload],methods=[PUT]}"</span> onto public org.springframework.http.ResponseEntity com.atlassian.synchrony.proxy.web.SynchronyProxyRestController.reloadConfiguration(com.atlassian.synchrony.proxy.web.SynchronyProxyConfigPayload)
-04-Jan-2019 17:04:19.211 INFO [localhost-startStop-2] org.springframework.context.support.DefaultLifecycleProcessor.start Starting beans <span class="keyword">in</span> phase 2147483647
-04-Jan-2019 17:04:19.238 INFO [localhost-startStop-2] org.springframework.web.servlet.DispatcherServlet.initServletBean FrameworkServlet <span class="string">'dispatcher'</span>: initialization completed <span class="keyword">in</span> 1368 ms
-============================== agent working ==============================
-2019-01-04 17:04:21,483 WARN [localhost-startStop-1] [com.atlassian.config.ApplicationConfig] setApplicationHome Application home does not exist. Creating directory: /home/confluence/atlassian/application-data/confluence/shared-home
-2019-01-04 17:04:21,493 INFO [localhost-startStop-1] [atlassian.confluence.cluster.DefaultClusterConfigurationHelper] lambda<span class="variable">$populateExistingClusterSetupConfig</span><span class="variable">$1</span> Populating setup configuration <span class="keyword">if</span> running with Cluster mode...
-2019-01-04 17:04:21,494 WARN [localhost-startStop-1] [atlassian.confluence.cluster.DefaultClusterConfigurationHelper] lambda<span class="variable">$populateExistingClusterSetupConfig</span><span class="variable">$1</span> Could not find shared config file.
-04-Jan-2019 17:04:28.788 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler [<span class="string">"http-nio-8090"</span>]
-04-Jan-2019 17:04:28.796 INFO [main] org.apache.catalina.startup.Catalina.start Server startup <span class="keyword">in</span> 12923 ms
-
-</code></pre>
-<p>当日志文件中出现了============================== agent working ==============================，证明破解程序已经加进去了.</p>
-<h4 id="5-开始安装"><a href="#5-开始安装" class="headerlink" title="5. 开始安装"></a>5. 开始安装</h4><p><strong>安装之前请务必记住两点：1、始终只打开着一个浏览器页面 2、关闭VPN软件</strong></p>
-<p>打开浏览器，输入地址：<a href="http://10.1.198.148:8090/" target="_blank" rel="noopener">http://10.1.198.148:8090/</a></p>
-<pre><code class="bash">bash-4.2$ java -jar /home/confluence/atlassian/atlassian-agent.jar -p conf -m aaa@bbb.com -n my_name -o https://zhile.io -s B3N1-KDPW-IYEI-14CE
-
-====================================================
-=======        Atlassian Crack Agent         =======
-=======           https://zhile.io           =======
-=======          QQ Group: 30347511          =======
-====================================================
-
-Your license code(Don<span class="string">'t copy this line!!!): </span>
-<span class="string"></span>
-<span class="string">AAABOA0ODAoPeJxtUNFOgzAUfe9XNPGZjQJzbkkTFWqCMlhk0/hkCt65JlBIWxbx6+0AX3TJTZp7T</span>
-<span class="string">u+595yrByXwI5fYDTBZrom39nwc5jvsuWSFQgXciEZG3AA9I45LHDdA7MSrbmDogVcaUAS6VKIdk</span>
-<span class="string">L2sRC0MfOBKlCA14KLHR2NavZ7Pv4+igploUKY+uRR6FPnHlo08zHhpxAmoUR2gsJHG9mzDRUU55</span>
-<span class="string">7dFUczKph5/5oYrA2o6ZoCScfeubyHlNdAw22zYcxjfJchqSAOSyxLYVytUP9m7sfaWttA0G0c0i</span>
-<span class="string">aOcpU5CFsH1YuWTwCceQTmoEyhL3/spcZ6i7asTv7HYIUHIfocvK287VR65hr+BTkm9gNLnPLzRQ</span>
-<span class="string">9rVBajssNcWp45dzFJ64Z4pnMFn3b9L+/4AuiCYZDAsAhRun3dfF12W32Xwo1fLHzycWuL06QIUJ</span>
-<span class="string">g92sSJT8py5r0NJiK0E87Jg7S4=X02fj</span>
-<span class="string"></span>
-</code></pre>
-<p>将上面生成的license拷贝出来</p>
-<p>输入字符串：jdbc:mysql://10.1.198.148:3306/wiki1?useUnicode=true&amp;characterEncoding=UTF-8<br>请注意修改IP:端口/数据库名</p>
-<h3 id="mysql配置及建库"><a href="#mysql配置及建库" class="headerlink" title="mysql配置及建库"></a>mysql配置及建库</h3><h4 id="1-mysql配置文件修改"><a href="#1-mysql配置文件修改" class="headerlink" title="1. mysql配置文件修改"></a>1. mysql配置文件修改</h4><ol>
-<li>编辑你 MySQL 服务器上的 my.cnf 文件（在 Window 操作系统中是 my.ini）。在这个文件中 [mysqld] 部分，对下面的一些参数进行修改：<br>找到  [mysqld]部分，对下面的参数进行一些修改（如果没有就新增）：</li>
-</ol>
-<ul>
-<li>设置服务器使用 UTF-8 字符集：<br>character-set-server=utf8<br>collation-server=utf8_bin</li>
-<li>设置默认的存储引擎是 InnoDB：<br>default-storage-engine=INNODB</li>
-<li>指定 max_allowed_packet 变量设置为 256M：<br>max_allowed_packet=256M</li>
-<li>指定innodb_log_file_size 变量设置为至少 2GB：<br>innodb_log_file_size=2GB</li>
-<li>确定 sql_mode 参数不被指定为 NO_AUTO_VALUE_ON_ZERO<br>// remove this if it exists<br>sql_mode = NO_AUTO_VALUE_ON_ZERO</li>
-<li>确定全局事务的隔离级别被设置为 READ-COMMITTED.<br>transaction-isolation=READ-COMMITTED</li>
-<li>检查2进制日志格式被配置使用为 ‘row-based’ 为日志：<br>binlog_format=row</li>
-</ul>
-<ol start="2">
-<li>重启你的 MySQL 数据库服务器，确定你的设置已经生效了：<br>在 Windows 中，选择 Window 服务器管理来启动服务。<br>在 Linux ：运行下面的命令，基于你的设置：’service mysqld restart’(或者使用’/etc/init.d/mysqld stop’ or ‘/etc/init.d/mysql stop’ )<br>在 Mac OS X，运行 ‘sudo /Library/StartupItems/MySQLCOM/MySQLCOM restart’。</li>
-</ol>
-<h4 id="2-mysql建库语句"><a href="#2-mysql建库语句" class="headerlink" title="2. mysql建库语句"></a>2. mysql建库语句</h4><ol>
-<li>创建一个空的 Confluence 数据库实例（例如 confluence）：CREATE DATABASE <database-name> CHARACTER SET utf8 COLLATE utf8_bin;</database-name></li>
-<li>创建一个 Confluence 数据库用户（例如 confluenceuser）：GRANT ALL PRIVILEGES ON <database-name>.* TO ‘<confluenceuser>‘@’localhost’ IDENTIFIED BY ‘<password>‘;<br>如果 Confluence 没有和你的 MySQL 数据库运行在同一个服务器上，你需要替换 localhost 为你的 Confluence 服务器访问你 MySQL 数据库的 Confluence 服务器主机名或者 IP 地址。</password></confluenceuser></database-name></li>
-</ol>
-<h3 id="安装及破解confluence插件"><a href="#安装及破解confluence插件" class="headerlink" title="安装及破解confluence插件"></a>安装及破解confluence插件</h3><p>记录下插件的关键词，然后执行如下命令，注意-p 后面是这个关键词，-s 后面仍然是上面安装时得到的server id.</p>
-<pre><code class="bash">bash-4.2$ java -jar /home/confluence/atlassian/atlassian-agent.jar -p com.mxgraph.confluence.plugins.diagramly -m aaa@bbb.com -n my_name -o https://zhile.io -s B3N1-KDPW-IYEI-14CE
-
-====================================================
-=======        Atlassian Crack Agent         =======
-=======           https://zhile.io           =======
-=======          QQ Group: 30347511          =======
-====================================================
-
-Your license code(Don<span class="string">'t copy this line!!!): </span>
-<span class="string"></span>
-<span class="string">AAABUQ0ODAoPeJylUU1rwzAMvftXGHZOmrTp0hYM25IMsvWLpd3YaSip2hgcJ9hOWfbr57bpZbsMB</span>
-<span class="string">jLCT+g96enmUXH6BJJ6AfXD2XA08zwaZRs69PwpiRSC4bWMwSA7IY7nO15A5rxAqXHTNbiEClm0W</span>
-<span class="string">iySlyi9n5PkCKI9N7E9CI0kRl0o3pyRrRS84gZ3VFwYaN7R0phGzwaDr5ILdHlNVuoAkusLya9qU</span>
-<span class="string">Vdu9XlQ0JRuUcu9aFEW6DaiPXCp3R0HW6tE50Jh+BGZUS2SqJbG/pMFcMEA4C7Pc9tdEQtIgxIsR</span>
-<span class="string">fLZcNX1q07sqqGNv8uh5VGN4rqXzFAdUaUxexgtfec5Xr856XuSOn4QJWTZVjmq1X6rUWnm+FdH/</span>
-<span class="string">zlDZkDZKXrn160qStD483q9969W+uTwkGTJktnnzP1xcDuejsKJF07Cq2nnC1fdh7T5G0jZvvQwL</span>
-<span class="string">AIUeHa1dZYW2bu+89FLpQoEi/GN57ECFBgAbb2KI7aQxWG0/me2swUdKAmnX02gk</span>
-</code></pre>
-<h3 id="其它潜在坑及其解决方法"><a href="#其它潜在坑及其解决方法" class="headerlink" title="其它潜在坑及其解决方法"></a>其它潜在坑及其解决方法</h3><ul>
-<li><a href="http://www.moheqionglin.com/site/blogs/26/detail.html" target="_blank" rel="noopener">中文乱码问题</a></li>
-<li><a href="https://confluence.atlassian.com/confkb/confluence-does-not-start-due-to-spring-application-context-has-not-been-set-218278311.html" target="_blank" rel="noopener">Spring Application context has not been set</a><br>起初我遇到了这个问题，11个解决方案，我一个个试，然而都没有解决报错。</li>
-<li><a href="https://confluence.atlassian.com/confkb/confluence-startup-problems-troubleshooting-180846988.html" target="_blank" rel="noopener">其它报错解决方案</a></li>
-</ul>
-<h2 id="confluence使用"><a href="#confluence使用" class="headerlink" title="confluence使用"></a>confluence使用</h2><p>详细信息请参考: <a href="http://www.confluence.cn/pages/viewpage.action?pageId=360467" target="_blank" rel="noopener">官方中文文档</a></p>
-<h2 id="后续工作"><a href="#后续工作" class="headerlink" title="后续工作"></a>后续工作</h2><p>安装好后只是第一步，文档的质量就是靠不停的改，不停的优化才能真正的提高，监督机制和规范是必要的，并一定要有执行力。<br>故下一步的工作：</p>
-<ol>
-<li>整理confluence培训文档，在团队内开始推行。</li>
-<li>制定监督机制，落实到具体的团体成员。</li>
-<li>制定一些文档模板规范，版本管理，项目到哪里阶段要同步的具备什么样的文档。</li>
-<li>最后的最后，还是那句话，执行力。</li>
-</ol>
-
+        
+          <a class="article-more-a" href="/2019/01/04/confluence install/#more">more >></a>
+        
       
 
       
-    </div>
+    </li></ul></div>
     <div class="article-info article-info-index">
       
       
@@ -460,18 +263,14 @@ Your license code(Don<span class="string">'t copy this line!!!): </span>
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="我为什么要写博客"><a href="#我为什么要写博客" class="headerlink" title="我为什么要写博客"></a>我为什么要写博客</h2><p>2018年就这么过去了，回头细想，没什么可圈可点的成就，甚是惭愧。</p>
-<p>做为一个大龄女程序员，在生了儿子后，承蒙领导和同事的照顾和关爱，主要心思还是放在了孩子身上。今年我打算做做改变，去尝试一些过去不愿意去尝试的新挑战，回顾这一年，在我身上发了三件大事：</p>
-<h3 id="第一件事我下决心要自己带孩子"><a href="#第一件事我下决心要自己带孩子" class="headerlink" title="第一件事我下决心要自己带孩子"></a>第一件事我下决心要自己带孩子</h3><p>其实原因无非还是自己能力不足，无法多线程的处理各种人际关系，这些年我一心想要写好代码(也没见得写的多好)，不喜欢参与人际关系的是是非非。公婆都是非常善良的人，我不善于与长辈打交道，因为我无法直接说出他们哪里做的我不适应，忍着吧又感觉对健康不利。于是一咬牙自己带吧，下决心时焦虑到影响到睡眠，我就是这么轴，只要下了决心，一要做下去。结果却出其的顺利，目前带娃已经5个月了，除了积食3次，大约1天就好，其它病没有得过，这与我精心挑选的幼儿园有很大的关系，同时与我之前做过大量的育儿护理相关的知识也有很大的关系，以至可以做到了孩子一咳嗽，我就可以分辨出他是积食了，还是受凉了，还是过敏性的。孩子也是出奇的配合，每天早上7点起床，总是一叫就醒。7点15全家出门，先送孩子去幼儿园，再送爸爸去上班，最后我到公司还能健身一小时，生活节奏刚刚好。下班后再去接儿子，如果两个人有一个要加班，另一个就照顾孩子。不得不表杨一下老公，相当的给力。</p>
-<h3 id="第二件事我发现我通过健身似乎突然开智了"><a href="#第二件事我发现我通过健身似乎突然开智了" class="headerlink" title="第二件事我发现我通过健身似乎突然开智了"></a>第二件事我发现我通过健身似乎突然开智了</h3><p>当然这个开智也只是我自己的个人感觉，从孩子出生后我已经坚持健身第四个年头了，从瑜珈，到健身房撸铁，再到参加马拉松，似乎想通过在健身上弥补我事业上的无作为。不过别说，任何一件事坚持久了，积累到一定程序，势必会影响到你生活的方方面面，大抵就是触类旁通的感觉吧。从一开始的热情，追求运动时长追求撸铁的重量，追求那种第二天身体哪里不酸痛就感觉昨天白练了;到后来的理智，开始关注身体的反馈，关注健身带给自己身体和精神的影响;再到后来的抵触,不想去练，感觉除了力气大，啥玩意也没有练出来，肚子上的肉肉还是那样的屹立不倒，不知道我坚持的意义何在。再后来-和解，与己和解，体谅和关爱自己，不再抵抗，今天我不想锻炼，平静的接受这个想法，这是真实的感受，没必要感觉懊恼和讨厌自己没毅力，但是接受过后，除非是睡眠不足或生病的情况下，我还是会坚持锻炼，我已经可以在健身这件事情上，将肉体的惰性与精神的自由区分开，当我真的做到时，我不由的感慨，人原来可以如此强大。</p>
-<h3 id="第三件事我接触到了一种让我耳目一新的哲学思想"><a href="#第三件事我接触到了一种让我耳目一新的哲学思想" class="headerlink" title="第三件事我接触到了一种让我耳目一新的哲学思想"></a>第三件事我接触到了一种让我耳目一新的哲学思想</h3><p>活到了三十几岁，一直都觉得我过的并不开心，时常会感觉到对自己的不满，可能是之前经历比较多，有很多我认为的创伤不能释怀。看过很多心理方面的书，大多都是佛洛依德的“因果论”，即你现在所做的一切都是你的经历导致的，你现在是怎么样一个人，与你的过去息息相关。这也是为什么我在孩子3岁以前事事亲为，因为我不想让他有童年创伤和阴影。因为你无法摆脱过去，想要治愈恐怕得重活一次了，但这做的到？那些伟人们哪一个不是经历过岁月沧桑，忍受着常人难以理解的痛苦，他们又是怎么做到成为另一种截然相反的人，而不是任由过去塑造自己？直到今年有幸读到了《被讨厌的勇气》一书，一个擅长对话形式写作的日本作家，以层层递进的方式让我见识到了另一种哲学思想-阿德勒的哲学思想。他告诉你，过去发生的一切都不重要，重要的是未来。你不想改变，是因为你没有勇气，你只是想通过维持着旧习惯来守着你的安全感而已。说实话，读完这本书，我有一种醍醐灌顶，浑身触电的感觉，毫不夸张，我认认真真的读了2遍。有些道理不是别人告诉你的，而是你经历过痛苦以后，再读到时顿悟出来的，道理只是静静躺在那里等着你。我今年也放下了对痛苦的抵抗， 开始接受痛苦并不是一件坏事，它会促使你看清很多东西。</p>
-<p>这三件大事儿给了我信心和勇气，想要改变，这四年来，我不断的规划着，迷茫着，痛苦着，在平衡着各种社会角色的同时寻找着自己的方向，而今年我觉得我应该为自己做点什么，走出自己的安全区，这将是一大步，成长的开始。</p>
-<h2 id="我要写些什么"><a href="#我要写些什么" class="headerlink" title="我要写些什么"></a>我要写些什么</h2><p>写一些工作总结，学习笔记，以及生活感悟吧。 这些年只跟代码打交道，感觉能准确的表达自己成了一种奢望，我觉得生活需要这种能力，会减少很多不必要的误解和矛盾。</p>
-<h2 id="我能坚持多久？大约多久更新"><a href="#我能坚持多久？大约多久更新" class="headerlink" title="我能坚持多久？大约多久更新"></a>我能坚持多久？大约多久更新</h2><p>大约一周更新一次，工作，生活中要处理的事情太多。有些重要的事情是一定要坚持的，至于我能坚持多久？我想大概我现在最大的能力也就是坚持吧。</p>
-
+<p>做为一个大龄女程序员，在生了儿子后，承蒙领导和同事的照顾和关爱，主要心思还是放在了孩子身上。今年我打算做做改变，去尝试一些过去不愿意去尝试的新挑战，回顾这一年，在我身上发了三件大事：<br>
+        
+          <a class="article-more-a" href="/2019/01/01/my-first-article/#more">more >></a>
+        
       
 
       
-    </div>
+    </p></div>
     <div class="article-info article-info-index">
       
       
