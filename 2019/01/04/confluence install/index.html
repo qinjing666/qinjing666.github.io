@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/04/confluence%20install/21.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/04/confluence%20install/22.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/04/confluence%20install/23.png">
-<meta property="og:updated_time" content="2019-01-06T01:32:41.505Z">
+<meta property="og:updated_time" content="2019-01-06T01:53:15.152Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="confluence 安装及破解">
 <meta name="twitter:description" content="新的一年要勇敢的迈出第一步，尝试去做做代码以外的工作，先从文档管理下手，第一步想到要建立一个团队的知识共享机制，原来团队的资源都存放在SVN上，搜索及管理很不方便，而且没有专人去监督管理，文档质量也是参差不齐，同事离职交接也是个大问题。对比了几个知识库产品后，比如dukuwiki,tikiwiki，发现还是confluence最强大，只是它是收费的。 confluence是什么？   conflu">
@@ -324,7 +324,7 @@ CATALINA_OPTS=<span class="string">"-Dconfluence.context.path=<span class="varia
 </code></pre>
 <h4 id="3-安装mysql驱动"><a href="#3-安装mysql驱动" class="headerlink" title="3. 安装mysql驱动"></a>3. 安装mysql驱动</h4><pre><code class="bash">[root@R540-148 atlassian]<span class="comment"># mv /root/mysql-connector-java-5.1.42-bin.jar /home/confluence/atlassian/confluence/confluence/WEB-INF/lib/</span>
 </code></pre>
-<h4 id="4-启动程序"><a href="#4-启动程序" class="headerlink" title="4. 启动程序"></a>4. 启动程序</h4><p>最好使用confluence用户安装</p>
+<h4 id="4-启动程序"><a href="#4-启动程序" class="headerlink" title="4. 启动程序"></a>4. 启动程序</h4><p>最好使用confluence用户启动</p>
 <pre><code class="bash">[root@R540-148 atlassian]<span class="comment"># su confluence</span>
 
 bash-4.2$ sh /home/confluence/atlassian/confluence/bin/start-confluence.sh
@@ -347,7 +347,7 @@ Using CATALINA_PID:    /home/confluence/atlassian/confluence/work/catalina.pid
 Tomcat started.
 bash-4.2$ 
 </code></pre>
-<p>证明程序已经启动了，查看日志，当日志文件中出现了============================== agent working ==============================，证明破解程序已经加进去了，如下所示：</p>
+<p>Tomcat started.即证明程序已经启动了。<br>下一步执行查看日志命令：tail -f /home/confluence/atlassian/confluence/catalina.out</p>
 <pre><code class="bash">ion.RequestMappingHandlerMapping.register Mapped <span class="string">"{[/healthcheck]}"</span> onto public com.atlassian.synchrony.proxy.web.HealthCheckResult com.atlassian.synchrony.proxy.web.SynchronyProxyRestController.getSynchronyProxyInfo()
 04-Jan-2019 17:04:19.140 INFO [localhost-startStop-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.register Mapped <span class="string">"{[/reload],methods=[PUT]}"</span> onto public org.springframework.http.ResponseEntity com.atlassian.synchrony.proxy.web.SynchronyProxyRestController.reloadConfiguration(com.atlassian.synchrony.proxy.web.SynchronyProxyConfigPayload)
 04-Jan-2019 17:04:19.211 INFO [localhost-startStop-2] org.springframework.context.support.DefaultLifecycleProcessor.start Starting beans <span class="keyword">in</span> phase 2147483647
@@ -360,7 +360,8 @@ bash-4.2$
 04-Jan-2019 17:04:28.796 INFO [main] org.apache.catalina.startup.Catalina.start Server startup <span class="keyword">in</span> 12923 ms
 
 </code></pre>
-<h4 id="5-开始配置confluence"><a href="#5-开始配置confluence" class="headerlink" title="5. 开始配置confluence"></a>5. 开始配置confluence</h4><p><strong>安装之前请务必记住两点：<br>1、始终只打开着一个浏览器页面<br>2、关闭VPN软件</strong></p>
+<p>当日志文件中出现了”========= agent working =====”，证明破解程序已经加进去了，如下所示：</p>
+<h4 id="5-开始配置confluence"><a href="#5-开始配置confluence" class="headerlink" title="5. 开始配置confluence"></a>5. 开始配置confluence</h4><p><strong>安装之前请务必记住两点：<br>1、始终只打开着一个浏览器安装引导页面<br>2、关闭VPN软件</strong></p>
 <p>打开浏览器，输入地址：<a href="http://10.1.198.148:8090/" target="_blank" rel="noopener">http://10.1.198.148:8090/</a></p>
 <ul>
 <li><p>选择语言：中文简体<br><img src="/2019/01/04/confluence install/1.png" alt="安装页面"></p>
@@ -370,8 +371,7 @@ bash-4.2$
 <li><p>输入序列号<br><img src="/2019/01/04/confluence install/3.png" alt="服务器ID"></p>
 </li>
 </ul>
-<p>先把服务器ID copy下来，然后在服务器上执行命令：<br><em>java -jar /home/confluence/atlassian/atlassian-agent.jar -p conf -m <a href="mailto:aaa@bbb.com" target="_blank" rel="noopener">aaa@bbb.com</a> -n my_name -o <a href="https://zhile.io" target="_blank" rel="noopener">https://zhile.io</a> -s B3N1-KDPW-IYEI-14CE</em></p>
-<p>参数的说明：<br> -p conf(安装的是confluence产品)<br> -m <a href="mailto:aaa@bbb.com" target="_blank" rel="noopener">aaa@bbb.com</a>(随意写)<br> -n my_name(随意写)<br> -o <a href="https://zhile.io" target="_blank" rel="noopener">https://zhile.io</a> (随意写)<br> -s B3N1-KDPW-IYEI-14CE (即当前的页面中显示的服务器ID)</p>
+<p>先把服务器ID copy下来，然后在服务器上执行命令：<br><em>java -jar /home/confluence/atlassian/atlassian-agent.jar -p conf -m <a href="mailto:aaa@bbb.com" target="_blank" rel="noopener">aaa@bbb.com</a> -n my_name -o <a href="https://zhile.io" target="_blank" rel="noopener">https://zhile.io</a> -s B3N1-KDPW-IYEI-14CE</em><br>参数的说明：<br> -p conf(安装的是confluence产品)<br> -m <a href="mailto:aaa@bbb.com" target="_blank" rel="noopener">aaa@bbb.com</a>(随意写)<br> -n my_name(随意写)<br> -o <a href="https://zhile.io" target="_blank" rel="noopener">https://zhile.io</a> (随意写)<br> -s B3N1-KDPW-IYEI-14CE (即当前的页面中显示的服务器ID)</p>
 <pre><code class="bash">bash-4.2$ java -jar /home/confluence/atlassian/atlassian-agent.jar -p conf -m aaa@bbb.com -n my_name -o https://zhile.io -s B3N1-KDPW-IYEI-14CE
 
 ====================================================
@@ -399,7 +399,8 @@ Your license code(Don<span class="string">'t copy this line!!!): </span>
 <li><p>配置数据库信息<br><img src="/2019/01/04/confluence install/6.png" alt="DB选择"></p>
 </li>
 </ul>
-<p>输入字符串：jdbc:mysql://10.1.198.148:3306/wiki1?useUnicode=true&amp;characterEncoding=UTF-8<br>请注意修改IP:端口/数据库名<br>点下一步之前，先测试连接，确认无误再继续，这个需要点时间，耐点等一会儿。完臧后请确认DB中是否已经创建好表，会出现下个页面。</p>
+<p>输入字符串：jdbc:mysql://10.1.198.148:3306/wiki1?useUnicode=true&amp;characterEncoding=UTF-8<br>请注意修改IP:端口/数据库名，如果选择简单模式配置的话，不会生成 ?useUnicode=true&amp;characterEncoding=UTF-8 字符集配置，可能会导致中文乱码问题。<br>点下一步之前，先测试连接，确认无误再继续。</p>
+<p>这个需要点时间，耐点等一会儿。完臧后请确认DB中是否已经创建好表，会出现下个页面。</p>
 <ul>
 <li><p>配置管理员信息等<br><img src="/2019/01/04/confluence install/8.png" alt="DB选择"><br><img src="/2019/01/04/confluence install/9.png" alt="DB选择"><br><img src="/2019/01/04/confluence install/10.png" alt="DB选择"><br><img src="/2019/01/04/confluence install/12.png" alt="DB选择"></p>
 </li>
@@ -409,7 +410,7 @@ Your license code(Don<span class="string">'t copy this line!!!): </span>
 </li>
 </ul>
 <h3 id="安装及破解confluence插件"><a href="#安装及破解confluence插件" class="headerlink" title="安装及破解confluence插件"></a>安装及破解confluence插件</h3><p><img src="/2019/01/04/confluence install/18.png" alt="DB选择"><br><img src="/2019/01/04/confluence install/19.png" alt="DB选择"><br><img src="/2019/01/04/confluence install/20.png" alt="DB选择"><br><img src="/2019/01/04/confluence install/21.png" alt="DB选择"><br><img src="/2019/01/04/confluence install/22.png" alt="DB选择"></p>
-<p>记录下插件的关键词，然后执行如下命令，注意-p 后面是这个关键词，-s 后面仍然是上面安装时得到的server id.</p>
+<p>记录下插件的关键词com.mxgraph.confluence.plugins.diagramly<br>执行命令;java -jar /home/confluence/atlassian/atlassian-agent.jar -p com.mxgraph.confluence.plugins.diagramly -m <a href="mailto:aaa@bbb.com" target="_blank" rel="noopener">aaa@bbb.com</a><br>参数的说明：<br> -p com.mxgraph.confluence.plugins.diagramly(插件关键词)<br> -m <a href="mailto:aaa@bbb.com" target="_blank" rel="noopener">aaa@bbb.com</a>(随意写)<br> -n my_name(随意写)<br> -o <a href="https://zhile.io" target="_blank" rel="noopener">https://zhile.io</a> (随意写)<br> -s B3N1-KDPW-IYEI-14CE (即当前的页面中显示的服务器ID)</p>
 <pre><code class="bash">bash-4.2$ java -jar /home/confluence/atlassian/atlassian-agent.jar -p com.mxgraph.confluence.plugins.diagramly -m aaa@bbb.com -n my_name -o https://zhile.io -s B3N1-KDPW-IYEI-14CE
 
 ====================================================
@@ -429,12 +430,14 @@ Your license code(Don<span class="string">'t copy this line!!!): </span>
 <span class="string">AIUeHa1dZYW2bu+89FLpQoEi/GN57ECFBgAbb2KI7aQxWG0/me2swUdKAmnX02gk</span>
 </code></pre>
 <p><img src="/2019/01/04/confluence install/23.png" alt="DB选择"></p>
-<p>当完成上述操作，就证明插件已破解成功，可以通过搜索插件去下载任何优秀插件了，可以让你大开眼界。</p>
-<p>比如，我之前要写一个设计文档，PC上要安装一大堆的软件：viso，PM软件，xmind等等，然后再揉到一个word里邮件发送给大家，但现在只需要在这上面，创建各种类型的文档，完成后，会自动发送给你想要抄送的同事。相当的方便。</p>
+<p>当完成上述操作，就证明插件已破解成功，可以搜索下载任何优秀插件了，有一各上为所欲为的快感，哈哈</p>
+<p>我的个人感受：比如之前要写一个设计文档，PC上要安装一大堆的软件：viso，PM软件，xmind等等，然后再揉到一个word里邮件发送给大家，而但现在安装所需的插件后，团队的所有人都可以创建各种类型的文档，完成后，会自动发送给你想要抄送的同事。</p>
 <h3 id="其它潜在坑及其解决方法"><a href="#其它潜在坑及其解决方法" class="headerlink" title="其它潜在坑及其解决方法"></a>其它潜在坑及其解决方法</h3><ul>
 <li><a href="http://www.moheqionglin.com/site/blogs/26/detail.html" target="_blank" rel="noopener">中文乱码问题</a></li>
-<li><a href="https://confluence.atlassian.com/confkb/confluence-does-not-start-due-to-spring-application-context-has-not-been-set-218278311.html" target="_blank" rel="noopener">Spring Application context has not been set</a><br>起初我遇到了这个问题，11个解决方案，我一个个试，然而都没有解决报错。</li>
-<li><a href="https://confluence.atlassian.com/confkb/confluence-startup-problems-troubleshooting-180846988.html" target="_blank" rel="noopener">其它报错解决方案</a></li>
+<li><p><a href="https://confluence.atlassian.com/confkb/confluence-does-not-start-due-to-spring-application-context-has-not-been-set-218278311.html" target="_blank" rel="noopener">Spring Application context has not been set</a><br>起初我遇到了这个问题，官网上列出来11个解决方案，我一个个试，然而都没有成功，按下葫芦起了瓢，google到眼瞎，若不是有强迫症，真的很想撂挑子。<br>后来无意间在issus上面看到:I close the vpn,and it worked.于是抱着死马当着活马医的心态，关闭了<strong>VPN</strong>（我用的是蓝灯），结果非常顺利的完成了安装。</p>
+</li>
+<li><p><a href="https://confluence.atlassian.com/confkb/confluence-startup-problems-troubleshooting-180846988.html" target="_blank" rel="noopener">其它报错解决方案</a></p>
+</li>
 </ul>
 <h2 id="confluence使用"><a href="#confluence使用" class="headerlink" title="confluence使用"></a>confluence使用</h2><p>详细信息请参考: <a href="http://www.confluence.cn/pages/viewpage.action?pageId=360467" target="_blank" rel="noopener">官方中文文档</a></p>
 <h2 id="后续工作"><a href="#后续工作" class="headerlink" title="后续工作"></a>后续工作</h2><p>安装好后只是第一步，文档的质量就是靠不停的改，不停的优化才能真正的提高，监督机制和规范是必要的，并一定要有执行力。<br>故下一步的工作：</p>
