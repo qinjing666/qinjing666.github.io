@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/04/confluence%20install/21.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/04/confluence%20install/22.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/04/confluence%20install/23.png">
-<meta property="og:updated_time" content="2019-01-06T02:09:42.922Z">
+<meta property="og:updated_time" content="2019-01-06T02:12:32.945Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="confluence 安装及破解">
 <meta name="twitter:description" content="新的一年要勇敢的迈出第一步，尝试去做做代码以外的工作，先从文档管理下手，第一步想到要建立一个团队的知识共享机制，原来团队的资源都存放在SVN上，搜索及管理很不方便，而且没有专人去监督管理，文档质量也是参差不齐，同事离职交接也是个大问题。对比了几个知识库产品后，比如dukuwiki,tikiwiki，发现还是confluence最强大，只是它是收费的。 confluence是什么？   conflu">
@@ -411,7 +411,8 @@ Your license code(Don<span class="string">'t copy this line!!!): </span>
 </li>
 </ul>
 <h3 id="安装及破解confluence插件"><a href="#安装及破解confluence插件" class="headerlink" title="安装及破解confluence插件"></a>安装及破解confluence插件</h3><p><img src="/2019/01/04/confluence install/18.png" alt="DB选择"><br><img src="/2019/01/04/confluence install/19.png" alt="DB选择"><br><img src="/2019/01/04/confluence install/20.png" alt="DB选择"><br><img src="/2019/01/04/confluence install/21.png" alt="DB选择"><br><img src="/2019/01/04/confluence install/22.png" alt="DB选择"></p>
-<p>记录下插件的关键词com.mxgraph.confluence.plugins.diagramly<br>执行命令;java -jar /home/confluence/atlassian/atlassian-agent.jar -p com.mxgraph.confluence.plugins.diagramly -m <a href="mailto:aaa@bbb.com" target="_blank" rel="noopener">aaa@bbb.com</a><br>参数的说明：<br> -p com.mxgraph.confluence.plugins.diagramly(插件关键词)<br> -m <a href="mailto:aaa@bbb.com" target="_blank" rel="noopener">aaa@bbb.com</a>(随意写)<br> -n my_name(随意写)<br> -o <a href="https://zhile.io" target="_blank" rel="noopener">https://zhile.io</a> (随意写)<br> -s B3N1-KDPW-IYEI-14CE (即当前的页面中显示的服务器ID)</p>
+<p>记录下插件的关键词com.mxgraph.confluence.plugins.diagramly<br>执行命令;java -jar /home/confluence/atlassian/atlassian-agent.jar -p com.mxgraph.confluence.plugins.diagramly -m <a href="mailto:aaa@bbb.com" target="_blank" rel="noopener">aaa@bbb.com</a> -o <a href="https://zhile.io" target="_blank" rel="noopener">https://zhile.io</a> -s B3N1-KDPW-IYEI-14CE</p>
+<p>参数的说明：<br> -p com.mxgraph.confluence.plugins.diagramly(插件关键词)<br> -m <a href="mailto:aaa@bbb.com" target="_blank" rel="noopener">aaa@bbb.com</a>(随意写)<br> -n my_name(随意写)<br> -o <a href="https://zhile.io" target="_blank" rel="noopener">https://zhile.io</a> (随意写)<br> -s B3N1-KDPW-IYEI-14CE (即当前的页面中显示的服务器ID)</p>
 <pre><code class="bash">bash-4.2$ java -jar /home/confluence/atlassian/atlassian-agent.jar -p com.mxgraph.confluence.plugins.diagramly -m aaa@bbb.com -n my_name -o https://zhile.io -s B3N1-KDPW-IYEI-14CE
 
 ====================================================
