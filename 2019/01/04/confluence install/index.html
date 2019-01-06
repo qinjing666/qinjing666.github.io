@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/04/confluence%20install/21.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/04/confluence%20install/22.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/04/confluence%20install/23.png">
-<meta property="og:updated_time" content="2019-01-06T01:53:15.152Z">
+<meta property="og:updated_time" content="2019-01-06T02:02:28.478Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="confluence 安装及破解">
 <meta name="twitter:description" content="新的一年要勇敢的迈出第一步，尝试去做做代码以外的工作，先从文档管理下手，第一步想到要建立一个团队的知识共享机制，原来团队的资源都存放在SVN上，搜索及管理很不方便，而且没有专人去监督管理，文档质量也是参差不齐，同事离职交接也是个大问题。对比了几个知识库产品后，比如dukuwiki,tikiwiki，发现还是confluence最强大，只是它是收费的。 confluence是什么？   conflu">
@@ -361,7 +361,8 @@ bash-4.2$
 
 </code></pre>
 <p>当日志文件中出现了”========= agent working =====”，证明破解程序已经加进去了，如下所示：</p>
-<h4 id="5-开始配置confluence"><a href="#5-开始配置confluence" class="headerlink" title="5. 开始配置confluence"></a>5. 开始配置confluence</h4><p><strong>安装之前请务必记住两点：<br>1、始终只打开着一个浏览器安装引导页面<br>2、关闭VPN软件</strong></p>
+<h4 id="5-开始配置confluence"><a href="#5-开始配置confluence" class="headerlink" title="5. 开始配置confluence"></a>5. 开始配置confluence</h4><p><strong>安装之前请务必记住两点：<br>1、始终只打开着一个浏览器安装引导页面<br>2、关闭VPN软件<br>3、如果是安装过程中手欠填错信息，或感觉填的不完美，配置都写入了/home/confluence/atlassian/application-data/confluence/confluence.cfg.xml文件中，可通过修改文件中的相应的配置项，并重启即可完成更改（比如更换数据库）。<br>  如果想重新配置confluence，则可删除此文件 ，然后重启程序。再次打开时，又会从设置语言开始。
+</strong></p>
 <p>打开浏览器，输入地址：<a href="http://10.1.198.148:8090/" target="_blank" rel="noopener">http://10.1.198.148:8090/</a></p>
 <ul>
 <li><p>选择语言：中文简体<br><img src="/2019/01/04/confluence install/1.png" alt="安装页面"></p>
