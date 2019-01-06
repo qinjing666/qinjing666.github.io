@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/04/confluence%20install/21.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/04/confluence%20install/22.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/04/confluence%20install/23.png">
-<meta property="og:updated_time" content="2019-01-06T02:02:28.478Z">
+<meta property="og:updated_time" content="2019-01-06T02:09:42.922Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="confluence 安装及破解">
 <meta name="twitter:description" content="新的一年要勇敢的迈出第一步，尝试去做做代码以外的工作，先从文档管理下手，第一步想到要建立一个团队的知识共享机制，原来团队的资源都存放在SVN上，搜索及管理很不方便，而且没有专人去监督管理，文档质量也是参差不齐，同事离职交接也是个大问题。对比了几个知识库产品后，比如dukuwiki,tikiwiki，发现还是confluence最强大，只是它是收费的。 confluence是什么？   conflu">
@@ -400,8 +400,8 @@ Your license code(Don<span class="string">'t copy this line!!!): </span>
 <li><p>配置数据库信息<br><img src="/2019/01/04/confluence install/6.png" alt="DB选择"></p>
 </li>
 </ul>
-<p>输入字符串：jdbc:mysql://10.1.198.148:3306/wiki1?useUnicode=true&amp;characterEncoding=UTF-8<br>请注意修改IP:端口/数据库名，如果选择简单模式配置的话，不会生成 ?useUnicode=true&amp;characterEncoding=UTF-8 字符集配置，可能会导致中文乱码问题。<br>点下一步之前，先测试连接，确认无误再继续。</p>
-<p>这个需要点时间，耐点等一会儿。完臧后请确认DB中是否已经创建好表，会出现下个页面。</p>
+<p>输入字符串：jdbc:mysql://10.1.198.148:3306/wiki1?useUnicode=true&amp;characterEncoding=UTF-8<br>请注意修改IP:端口/数据库名，如果选择简单模式配置的话，不会生成 ?useUnicode=true&amp;characterEncoding=UTF-8 字符集配置，可通过修改confluence.cfg.xml文件，在jdbc处添加上此配置，否则可能会有中文乱码问题。<br>点下一步之前，先测试连接，确认无误再继续。</p>
+<p>这个需要点时间，耐点等一会儿。完成后请确认DB中是否已经创建好表，日志是否有报错，一切正常会出现下个页面。</p>
 <ul>
 <li><p>配置管理员信息等<br><img src="/2019/01/04/confluence install/8.png" alt="DB选择"><br><img src="/2019/01/04/confluence install/9.png" alt="DB选择"><br><img src="/2019/01/04/confluence install/10.png" alt="DB选择"><br><img src="/2019/01/04/confluence install/12.png" alt="DB选择"></p>
 </li>
@@ -431,14 +431,12 @@ Your license code(Don<span class="string">'t copy this line!!!): </span>
 <span class="string">AIUeHa1dZYW2bu+89FLpQoEi/GN57ECFBgAbb2KI7aQxWG0/me2swUdKAmnX02gk</span>
 </code></pre>
 <p><img src="/2019/01/04/confluence install/23.png" alt="DB选择"></p>
-<p>当完成上述操作，就证明插件已破解成功，可以搜索下载任何优秀插件了，有一各上为所欲为的快感，哈哈</p>
+<p>当完成上述操作，就证明插件已破解成功，可以搜索下载任何优秀插件了，有一种可以为所欲为的快感，哈哈</p>
 <p>我的个人感受：比如之前要写一个设计文档，PC上要安装一大堆的软件：viso，PM软件，xmind等等，然后再揉到一个word里邮件发送给大家，而但现在安装所需的插件后，团队的所有人都可以创建各种类型的文档，完成后，会自动发送给你想要抄送的同事。</p>
 <h3 id="其它潜在坑及其解决方法"><a href="#其它潜在坑及其解决方法" class="headerlink" title="其它潜在坑及其解决方法"></a>其它潜在坑及其解决方法</h3><ul>
 <li><a href="http://www.moheqionglin.com/site/blogs/26/detail.html" target="_blank" rel="noopener">中文乱码问题</a></li>
-<li><p><a href="https://confluence.atlassian.com/confkb/confluence-does-not-start-due-to-spring-application-context-has-not-been-set-218278311.html" target="_blank" rel="noopener">Spring Application context has not been set</a><br>起初我遇到了这个问题，官网上列出来11个解决方案，我一个个试，然而都没有成功，按下葫芦起了瓢，google到眼瞎，若不是有强迫症，真的很想撂挑子。<br>后来无意间在issus上面看到:I close the vpn,and it worked.于是抱着死马当着活马医的心态，关闭了<strong>VPN</strong>（我用的是蓝灯），结果非常顺利的完成了安装。</p>
-</li>
-<li><p><a href="https://confluence.atlassian.com/confkb/confluence-startup-problems-troubleshooting-180846988.html" target="_blank" rel="noopener">其它报错解决方案</a></p>
-</li>
+<li><a href="https://confluence.atlassian.com/confkb/confluence-startup-problems-troubleshooting-180846988.html" target="_blank" rel="noopener">其它报错解决方案</a></li>
+<li><a href="https://confluence.atlassian.com/confkb/confluence-does-not-start-due-to-spring-application-context-has-not-been-set-218278311.html" target="_blank" rel="noopener">Spring Application context has not been set</a><br>起初我遇到了这个问题，官网上列出来11个解决方案，我一个个试，然而都没有成功，按下葫芦起了瓢，google到眼瞎，若不是有强迫症，真的很想撂挑子。<br>后来无意间在issus上面看到:I close the vpn,and it worked.于是抱着死马当着活马医的心态，关闭了<strong>VPN</strong>（我用的是蓝灯），结果非常顺利的完成了安装。</li>
 </ul>
 <h2 id="confluence使用"><a href="#confluence使用" class="headerlink" title="confluence使用"></a>confluence使用</h2><p>详细信息请参考: <a href="http://www.confluence.cn/pages/viewpage.action?pageId=360467" target="_blank" rel="noopener">官方中文文档</a></p>
 <h2 id="后续工作"><a href="#后续工作" class="headerlink" title="后续工作"></a>后续工作</h2><p>安装好后只是第一步，文档的质量就是靠不停的改，不停的优化才能真正的提高，监督机制和规范是必要的，并一定要有执行力。<br>故下一步的工作：</p>
