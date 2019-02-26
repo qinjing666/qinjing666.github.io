@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/7.png">
 <meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/0.jpg">
 <meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/1.jpg">
-<meta property="og:updated_time" content="2019-02-26T08:58:30.847Z">
+<meta property="og:updated_time" content="2019-02-26T09:21:26.743Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="confluence 维护手册">
 <meta name="twitter:description" content="打算在团队内推行使用confluence，一旦真正使用起来，就要认真做好confluence的日常维护，以防丢失数据等问题出现，给大家的工作带来不便。故此篇主要是写一写confluence的日常维护手册">
@@ -211,17 +211,15 @@ drwxr-xr-x. 14 root root   4096 Jan  4 16:52 confluence
 </code></pre>
 <p>application-data: confluence用户数据目录<br>atlassian-agent.jar :破解程序，主要用于破解confluence以及收费插件<br>confluence :安装目录</p>
 <h3 id="启动与停止"><a href="#启动与停止" class="headerlink" title="启动与停止"></a>启动与停止</h3><ul>
-<li>查看Confluence运行状态<br>使用lsof命令查看<pre><code class="bash">[root@R540-148 atlassian]<span class="comment"># lsof -i:8090</span>
+<li>查看Confluence运行状态<br>使用lsof命令查看</li>
+</ul>
+<pre><code class="bash">[root@R540-148 atlassian]<span class="comment"># lsof -i:8090</span>
 -bash: lsof: <span class="built_in">command</span> not found
 [root@R540-148 atlassian]<span class="comment"># yum install lsof</span>
 [root@R540-148 ~]<span class="comment"># lsof -i:8090</span>
 COMMAND  PID       USER   FD   TYPE   DEVICE SIZE/OFF NODE NAME
 java    1892 confluence   37u  IPv6    36947      0t0  TCP *:8090 (LISTEN)
-java    1892 confluence  137u  IPv6 25254571      0t0  TCP R540-148:8090-&gt;10.1.53.10:47414 (ESTABLISHED)
-java    1892 confluence  150u  IPv6 25276752      0t0  TCP R540-148:8090-&gt;10.1.57.190:52090 (ESTABLISHED)
 </code></pre>
-</li>
-</ul>
 <p>使用netstat命令查看</p>
 <pre><code class="bash">[root@R540-148 ~]<span class="comment"># netstat -nltcp | grep 8090</span>
 tcp6       0      0 :::8090                 :::*                    LISTEN      1892/java           
@@ -272,7 +270,7 @@ total 164800
 <img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/1.jpg">
 </li>
 </ul>
-<p>剩下的就是需要在Prometheus侧进行配置，使用此软件即可达到监控confluence的目的。</p>
+<p>剩下的就是需要在Prometheus侧进行配置，使用此软件即可达到监控con<code></code>fluence的目的。</p>
 
       
 
