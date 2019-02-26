@@ -6,18 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 随笔 | what is a courage, which is a breakthrough and to the enormous energy.</title>
+  <title>confluence 维护手册 | what is a courage, which is a breakthrough and to the enormous energy.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="in a world of locked rooms , the man with the key is king">
-<meta property="og:type" content="website">
-<meta property="og:title" content="what is a courage, which is a breakthrough and to the enormous energy.">
-<meta property="og:url" content="http://yoursite.com/tags/随笔/index.html">
+  <meta name="description" content="打算在团队内推行使用confluence，一旦真正使用起来，就要认真做好confluence的日常维护，以防丢失数据等问题出现，给大家的工作带来不便。故此篇主要是写一写confluence的日常维护手册">
+<meta name="keywords" content="文档管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="confluence 维护手册">
+<meta property="og:url" content="http://yoursite.com/2019/02/26/confluence maintain/index.html">
 <meta property="og:site_name" content="what is a courage, which is a breakthrough and to the enormous energy.">
-<meta property="og:description" content="in a world of locked rooms , the man with the key is king">
+<meta property="og:description" content="打算在团队内推行使用confluence，一旦真正使用起来，就要认真做好confluence的日常维护，以防丢失数据等问题出现，给大家的工作带来不便。故此篇主要是写一写confluence的日常维护手册">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/3.png">
+<meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/4.png">
+<meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/5.png">
+<meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/6.png">
+<meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/7.png">
+<meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/0.jpg">
+<meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/1.jpg">
+<meta property="og:updated_time" content="2019-02-26T08:58:30.847Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="what is a courage, which is a breakthrough and to the enormous energy.">
-<meta name="twitter:description" content="in a world of locked rooms , the man with the key is king">
+<meta name="twitter:title" content="confluence 维护手册">
+<meta name="twitter:description" content="打算在团队内推行使用confluence，一旦真正使用起来，就要认真做好confluence的日常维护，以防丢失数据等问题出现，给大家的工作带来不便。故此篇主要是写一写confluence的日常维护手册">
+<meta name="twitter:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/3.png">
   
     <link rel="alternative" href="/atom.xml" title="what is a courage, which is a breakthrough and to the enormous energy." type="application/atom+xml">
   
@@ -169,136 +179,243 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-confluence maintain" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      confluence 维护手册
+    </h1>
+  
+
+        
+        <a href="/2019/02/26/confluence maintain/" class="archive-article-date">
+  	<time datetime="2019-02-26T14:23:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-26</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>打算在团队内推行使用confluence，一旦真正使用起来，就要认真做好confluence的日常维护，以防丢失数据等问题出现，给大家的工作带来不便。故此篇主要是写一写confluence的日常维护手册<br><a id="more"></a></p>
+<h2 id="confluence-安装目录说明"><a href="#confluence-安装目录说明" class="headerlink" title="confluence 安装目录说明"></a>confluence 安装目录说明</h2><h3 id="目录结构说明"><a href="#目录结构说明" class="headerlink" title="目录结构说明"></a>目录结构说明</h3><pre><code class="bash">[root@R540-148 atlassian]<span class="comment"># pwd</span>
+/home/confluence/atlassian
+[root@R540-148 atlassian]<span class="comment"># ls -l</span>
+total 804
+drwxr-xr-x.  3 root root     24 Jan  4 16:51 application-data
+-rw-r--r--.  1 root root 818083 Dec 10 13:37 atlassian-agent.jar
+drwxr-xr-x. 14 root root   4096 Jan  4 16:52 confluence
+[root@R540-148 atlassian]<span class="comment"># </span>
+</code></pre>
+<p>application-data: confluence用户数据目录<br>atlassian-agent.jar :破解程序，主要用于破解confluence以及收费插件<br>confluence :安装目录</p>
+<h3 id="启动与停止"><a href="#启动与停止" class="headerlink" title="启动与停止"></a>启动与停止</h3><ul>
+<li>查看Confluence运行状态<br>使用lsof命令查看<pre><code class="bash">[root@R540-148 atlassian]<span class="comment"># lsof -i:8090</span>
+-bash: lsof: <span class="built_in">command</span> not found
+[root@R540-148 atlassian]<span class="comment"># yum install lsof</span>
+[root@R540-148 ~]<span class="comment"># lsof -i:8090</span>
+COMMAND  PID       USER   FD   TYPE   DEVICE SIZE/OFF NODE NAME
+java    1892 confluence   37u  IPv6    36947      0t0  TCP *:8090 (LISTEN)
+java    1892 confluence  137u  IPv6 25254571      0t0  TCP R540-148:8090-&gt;10.1.53.10:47414 (ESTABLISHED)
+java    1892 confluence  150u  IPv6 25276752      0t0  TCP R540-148:8090-&gt;10.1.57.190:52090 (ESTABLISHED)
+</code></pre>
+</li>
+</ul>
+<p>使用netstat命令查看</p>
+<pre><code class="bash">[root@R540-148 ~]<span class="comment"># netstat -nltcp | grep 8090</span>
+tcp6       0      0 :::8090                 :::*                    LISTEN      1892/java           
+tcp6       0      0 :::8090                 :::*                    LISTEN      1892/java           
+tcp6       0      0 :::8090                 :::*                    LISTEN      1892/java           
+tcp6       0      0 :::8090                 :::*                    LISTEN      1892/java  
+</code></pre>
+<ul>
+<li>启动Confluence<br>最好是切换到confluence用户再启动程序<pre><code class="bash">[root@R540-148 bin]<span class="comment"># su confluence</span>
+[root@R540-148 bin]<span class="comment"># sh /home/confluence/atlassian/confluence/bin/startup.sh</span>
+</code></pre>
+</li>
+<li>停止Confluence<pre><code class="bash">[root@R540-148 bin]<span class="comment"># su confluence</span>
+[root@R540-148 bin]<span class="comment">#sh /home/confluence/atlassian/confluence/bin/shutdown.sh</span>
+</code></pre>
+</li>
+</ul>
+<h2 id="confluence-备份与还原"><a href="#confluence-备份与还原" class="headerlink" title="confluence 备份与还原"></a>confluence 备份与还原</h2><p>所有confluence的配置信息（包括备份路径），可查看 文件。</p>
+<ul>
+<li>自动备份<br>备份周期：每天晚上2点<br>备分效率：高，但是占用资源，官方不推荐,目前数据量不大，可暂时使用<pre><code class="bash">[root@R540-148 bin]<span class="comment">#vi  /home/confluence/atlassian/application-data/confluence/confluence.cfg.xml</span>
+</code></pre>
+<img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/3.png">
+然后重启confluence，就可以看到已启用每日自动备份功能，需要再写个脚本，自动清理过期文件，以免占用太多的磁盘空间<img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/4.png">
+<pre><code class="bash">[root@R540-148 backups]<span class="comment"># ls -l /home/confluence/atlassian/application-data/confluence/backups</span>
+total 164800
+-rw-r--r--. 1 confluence confluence 1436395 Jan  5 02:00 backup-2019_01_05.zip
+-rw-r--r--. 1 confluence confluence 1436585 Jan  6 02:00 backup-2019_01_06.zip
+-rw-r--r--. 1 confluence confluence 1436604 Jan  7 02:00 backup-2019_01_07.zip
+-rw-r--r--. 1 confluence confluence 1436610 Jan  8 02:00 backup-2019_01_08.zip
+-rw-r--r--. 1 confluence confluence 1349161 Jan  9 02:00 backup-2019_01_09.zip
+-rw-r--r--. 1 confluence confluence  704526 Jan 10 02:00 backup-2019_01_10.zip
+-rw-r--r--. 1 confluence confluence 1016537 Jan 11 02:00 backup-2019_01_11.zip
+-rw-r--r--. 1 confluence confluence 1018092 Jan 12 02:00 backup-2019_01_12.zip
+-rw-r--r--. 1 confluence confluence 1018117 Jan 13 02:00 backup-2019_01_13.zip
+-rw-r--r--. 1 confluence confluence 1018131 Jan 14 02:00 backup-2019_01_14.zip
+-rw-r--r--. 1 confluence confluence 1034578 Jan 15 02:00 backup-2019_01_15.zip
+-rw-r--r--. 1 confluence confluence 1035269 Jan 16 02:00 backup-2019_01_16.zip
+</code></pre>
+<code>`</code><br>– 手工备份<br>打开confluence-设置-一般配置-备份与还原<br>备份文件<img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/5.png">
+<img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/6.png">
+</li>
+</ul>
+<p>还原文件<br><img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/7.png"></p>
+<h2 id="confluence-监控"><a href="#confluence-监控" class="headerlink" title="confluence 监控"></a>confluence 监控</h2><p>主要是监控confluence的运行情况，如出现异常，则会发送邮件通知管理员。采用Prometheus开源项目做为告警途径，使用confluence插件方式进行整合。</p>
+<ul>
+<li>git项目源码：<a href="https://github.com/AndreyVMarkelov/prom-confluence-exporter" target="_blank" rel="noopener">Prometheus Exporter For Confluence：prom-confluence-exporter</a></li>
+<li>编译好的插件包<a href="https://marketplace.atlassian.com/apps/1218015/prometheus-exporter-for-confluence?hosting=server&amp;tab=overview" target="_blank" rel="noopener">prom-confluence-exporter-1.0.16.jar</a><br>推荐直接下载编译好的jar包，然后登录confluence，选中下载好的jar包进行安装。<img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/0.jpg">
+<img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/1.jpg">
+</li>
+</ul>
+<p>剩下的就是需要在Prometheus侧进行配置，使用此软件即可达到监控confluence的目的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/18/mature/" class="archive-article-date">
-  	<time datetime="2019-02-18T11:54:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/18/mature/">禁欲系男人-苏志燮</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文档管理</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      <span id="busuanzi_container_page_pv">| 阅读量(<span id="busuanzi_value_page_pv"></span>)</span>
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/02/26/confluence maintain/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/24/party/" class="archive-article-date">
-  	<time datetime="2019-01-24T02:54:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-24</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/02/18/mature/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">禁欲系男人-苏志燮</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/24/party/">年会组织活动的一点小感想</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#confluence-安装目录说明"><span class="toc-number">1.</span> <span class="toc-text">confluence 安装目录说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目录结构说明"><span class="toc-number">1.1.</span> <span class="toc-text">目录结构说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动与停止"><span class="toc-number">1.2.</span> <span class="toc-text">启动与停止</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#confluence-备份与还原"><span class="toc-number">2.</span> <span class="toc-text">confluence 备份与还原</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#confluence-监控"><span class="toc-number">3.</span> <span class="toc-text">confluence 监控</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/01/my-first-article/" class="archive-article-date">
-  	<time datetime="2019-01-01T14:23:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/01/my-first-article/">开年随笔</a>
-    </h1>
+        
+    </div>
+</aside>
+
+
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+  <div id="SOHUCS" sid="confluence maintain"></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js"></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cyu415EOX",
+        conf: "ab8ab844177dc72defe1c9eb2e760246"
+    });
+</script>
+
+  
+
+  
+
+  
 
 
           </div>
@@ -330,9 +447,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
