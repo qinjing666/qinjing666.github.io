@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/7.png">
 <meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/0.jpg">
 <meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/1.jpg">
-<meta property="og:updated_time" content="2019-02-26T09:21:26.743Z">
+<meta property="og:updated_time" content="2019-02-27T01:48:43.601Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="confluence 维护手册">
 <meta name="twitter:description" content="打算在团队内推行使用confluence，一旦真正使用起来，就要认真做好confluence的日常维护，以防丢失数据等问题出现，给大家的工作带来不便。故此篇主要是写一写confluence的日常维护手册">
@@ -228,17 +228,18 @@ tcp6       0      0 :::8090                 :::*                    LISTEN      
 tcp6       0      0 :::8090                 :::*                    LISTEN      1892/java  
 </code></pre>
 <ul>
-<li>启动Confluence<br>最好是切换到confluence用户再启动程序<pre><code class="bash">[root@R540-148 bin]<span class="comment"># su confluence</span>
+<li>启动Confluence<br>最好是切换到confluence用户再启动程序</li>
+</ul>
+<pre><code class="bash">[root@R540-148 bin]<span class="comment"># su confluence</span>
 [root@R540-148 bin]<span class="comment"># sh /home/confluence/atlassian/confluence/bin/startup.sh</span>
 </code></pre>
-</li>
+<ul>
 <li>停止Confluence<pre><code class="bash">[root@R540-148 bin]<span class="comment"># su confluence</span>
 [root@R540-148 bin]<span class="comment">#sh /home/confluence/atlassian/confluence/bin/shutdown.sh</span>
 </code></pre>
 </li>
 </ul>
-<h2 id="confluence-备份与还原"><a href="#confluence-备份与还原" class="headerlink" title="confluence 备份与还原"></a>confluence 备份与还原</h2><p>所有confluence的配置信息（包括备份路径），可查看 文件。</p>
-<ul>
+<h2 id="confluence-备份与还原"><a href="#confluence-备份与还原" class="headerlink" title="confluence 备份与还原"></a>confluence 备份与还原</h2><ul>
 <li>自动备份<br>备份周期：每天晚上2点<br>备分效率：高，但是占用资源，官方不推荐,目前数据量不大，可暂时使用<pre><code class="bash">[root@R540-148 bin]<span class="comment">#vi  /home/confluence/atlassian/application-data/confluence/confluence.cfg.xml</span>
 </code></pre>
 <img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/3.png">
@@ -258,7 +259,8 @@ total 164800
 -rw-r--r--. 1 confluence confluence 1034578 Jan 15 02:00 backup-2019_01_15.zip
 -rw-r--r--. 1 confluence confluence 1035269 Jan 16 02:00 backup-2019_01_16.zip
 </code></pre>
-<code>`</code><br>– 手工备份<br>打开confluence-设置-一般配置-备份与还原<br>备份文件<img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/5.png">
+<code>`</code> </li>
+<li>手工备份<br>打开confluence-设置-一般配置-备份与还原<br>备份文件<img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/5.png">
 <img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/6.png">
 </li>
 </ul>
@@ -270,7 +272,7 @@ total 164800
 <img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/1.jpg">
 </li>
 </ul>
-<p>剩下的就是需要在Prometheus侧进行配置，使用此软件即可达到监控con<code></code>fluence的目的。</p>
+<p>剩下的就是需要在Prometheus侧进行配置，使用此软件即可达到监控confluence的目的。</p>
 
       
 
