@@ -16,18 +16,18 @@
 <meta property="og:site_name" content="what is a courage, which is a breakthrough and to the enormous energy.">
 <meta property="og:description" content="打算在团队内推行使用confluence，一旦真正使用起来，就要认真做好confluence的日常维护，以防丢失数据等问题出现，给大家的工作带来不便。故此篇主要是写一写confluence的日常维护手册">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/3.png">
-<meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/4.png">
-<meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/5.png">
-<meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/6.png">
-<meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/7.png">
-<meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/0.jpg">
-<meta property="og:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/1.jpg">
+<meta property="og:image" content="http://qinjj.tech/static/images/confluenceMatintain/3.png">
+<meta property="og:image" content="http://qinjj.tech/static/images/confluenceMatintain/4.png">
+<meta property="og:image" content="http://qinjj.tech/static/images/confluenceMatintain/5.png">
+<meta property="og:image" content="http://qinjj.tech/static/images/confluenceMatintain/6.png">
+<meta property="og:image" content="http://qinjj.tech/static/images/confluenceMatintain/7.png">
+<meta property="og:image" content="http://qinjj.tech/static/images/confluenceMatintain/0.jpg">
+<meta property="og:image" content="http://qinjj.tech/static/images/confluenceMatintain/1.jpg">
 <meta property="og:updated_time" content="2019-02-27T01:48:43.601Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="confluence 维护手册">
 <meta name="twitter:description" content="打算在团队内推行使用confluence，一旦真正使用起来，就要认真做好confluence的日常维护，以防丢失数据等问题出现，给大家的工作带来不便。故此篇主要是写一写confluence的日常维护手册">
-<meta name="twitter:image" content="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/3.png">
+<meta name="twitter:image" content="http://qinjj.tech/static/images/confluenceMatintain/3.png">
   
     <link rel="alternative" href="/atom.xml" title="what is a courage, which is a breakthrough and to the enormous energy." type="application/atom+xml">
   
@@ -242,8 +242,8 @@ tcp6       0      0 :::8090                 :::*                    LISTEN      
 <h2 id="confluence-备份与还原"><a href="#confluence-备份与还原" class="headerlink" title="confluence 备份与还原"></a>confluence 备份与还原</h2><ul>
 <li>自动备份<br>备份周期：每天晚上2点<br>备分效率：高，但是占用资源，官方不推荐,目前数据量不大，可暂时使用<pre><code class="bash">[root@R540-148 bin]<span class="comment">#vi  /home/confluence/atlassian/application-data/confluence/confluence.cfg.xml</span>
 </code></pre>
-<img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/3.png">
-然后重启confluence，就可以看到已启用每日自动备份功能，需要再写个脚本，自动清理过期文件，以免占用太多的磁盘空间<img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/4.png">
+<img src="http://qinjj.tech/static/images/confluenceMatintain/3.png">
+然后重启confluence，就可以看到已启用每日自动备份功能，需要再写个脚本，自动清理过期文件，以免占用太多的磁盘空间<img src="http://qinjj.tech/static/images/confluenceMatintain/4.png">
 <pre><code class="bash">[root@R540-148 backups]<span class="comment"># ls -l /home/confluence/atlassian/application-data/confluence/backups</span>
 total 164800
 -rw-r--r--. 1 confluence confluence 1436395 Jan  5 02:00 backup-2019_01_05.zip
@@ -260,16 +260,16 @@ total 164800
 -rw-r--r--. 1 confluence confluence 1035269 Jan 16 02:00 backup-2019_01_16.zip
 </code></pre>
 <code>`</code> </li>
-<li>手工备份<br>打开confluence-设置-一般配置-备份与还原<br>备份文件<img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/5.png">
-<img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/6.png">
+<li>手工备份<br>打开confluence-设置-一般配置-备份与还原<br>备份文件<img src="http://qinjj.tech/static/images/confluenceMatintain/5.png">
+<img src="http://qinjj.tech/static/images/confluenceMatintain/6.png">
 </li>
 </ul>
-<p>还原文件<br><img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/7.png"></p>
+<p>还原文件<br><img src="http://qinjj.tech/static/images/confluenceMatintain/7.png"></p>
 <h2 id="confluence-监控"><a href="#confluence-监控" class="headerlink" title="confluence 监控"></a>confluence 监控</h2><p>主要是监控confluence的运行情况，如出现异常，则会发送邮件通知管理员。采用Prometheus开源项目做为告警途径，使用confluence插件方式进行整合。</p>
 <ul>
 <li>git项目源码：<a href="https://github.com/AndreyVMarkelov/prom-confluence-exporter" target="_blank" rel="noopener">Prometheus Exporter For Confluence：prom-confluence-exporter</a></li>
-<li>编译好的插件包<a href="https://marketplace.atlassian.com/apps/1218015/prometheus-exporter-for-confluence?hosting=server&amp;tab=overview" target="_blank" rel="noopener">prom-confluence-exporter-1.0.16.jar</a><br>推荐直接下载编译好的jar包，然后登录confluence，选中下载好的jar包进行安装。<img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/0.jpg">
-<img src="http://plyuclu2k.bkt.clouddn.com/static/images/confluenceMatintain/1.jpg">
+<li>编译好的插件包<a href="https://marketplace.atlassian.com/apps/1218015/prometheus-exporter-for-confluence?hosting=server&amp;tab=overview" target="_blank" rel="noopener">prom-confluence-exporter-1.0.16.jar</a><br>推荐直接下载编译好的jar包，然后登录confluence，选中下载好的jar包进行安装。<img src="http://qinjj.tech/static/images/confluenceMatintain/0.jpg">
+<img src="http://qinjj.tech/static/images/confluenceMatintain/1.jpg">
 </li>
 </ul>
 <p>剩下的就是需要在Prometheus侧进行配置，使用此软件即可达到监控confluence的目的。</p>
