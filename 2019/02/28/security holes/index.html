@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>about | what is a courage, which is a breakthrough and to the enormous energy.</title>
+  <title>Web安全漏洞（持续更新） | what is a courage, which is a breakthrough and to the enormous energy.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="in a world of locked rooms , the man with the key is king">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+  <meta name="description" content="经常遇到现网安全漏洞扫描修复工单，持续收集安全漏洞修复方案。">
+<meta name="keywords" content="安全漏洞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web安全漏洞（持续更新）">
+<meta property="og:url" content="http://yoursite.com/2019/02/28/security holes/index.html">
 <meta property="og:site_name" content="what is a courage, which is a breakthrough and to the enormous energy.">
-<meta property="og:description" content="in a world of locked rooms , the man with the key is king">
+<meta property="og:description" content="经常遇到现网安全漏洞扫描修复工单，持续收集安全漏洞修复方案。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-17T08:45:37.866Z">
+<meta property="og:updated_time" content="2019-02-28T03:46:31.537Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="in a world of locked rooms , the man with the key is king">
+<meta name="twitter:title" content="Web安全漏洞（持续更新）">
+<meta name="twitter:description" content="经常遇到现网安全漏洞扫描修复工单，持续收集安全漏洞修复方案。">
   
     <link rel="alternative" href="/atom.xml" title="what is a courage, which is a breakthrough and to the enormous energy." type="application/atom+xml">
   
@@ -170,27 +171,71 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope="" itemprop="blogPost">
+            <article id="post-security holes" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      about
+      Web安全漏洞（持续更新）
     </h1>
   
 
         
-        <a href="/about/index.html" class="archive-article-date">
-  	<time datetime="2018-12-17T08:45:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-17</time>
+        <a href="/2019/02/28/security holes/" class="archive-article-date">
+  	<time datetime="2019-02-28T14:23:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>经常遇到现网安全漏洞扫描修复工单，持续收集安全漏洞修复方案。<br><a id="more"></a></p>
+<h2 id="Slow-HTTP-DOS"><a href="#Slow-HTTP-DOS" class="headerlink" title="Slow HTTP DOS"></a>Slow HTTP DOS</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Slow HTTP DOS(Slow HTTP Denial of Service Attack)，译为缓慢的HTTP拒绝服务，这类攻击方式出现在许多公开协议中。Slow HTTP DOS是一个应用层拒绝服务攻击，主要针对协议为HTTP，攻击的成本很低，并且能够消耗服务器端资源，占用客户端连接数，导致正常用户无法连接服务器。风险等级:中</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>HTTP协议的报文</p>
+<pre><code class="bash">GET / HTTP/1.1\r\n
+Host : payloads.online\r\n
+Connection: keep-alive\r\n
+Keep-Alive: 900\r\n
+Content-Length: 100000000\r\n
+Content_Type: application/x-www-form-urlencoded\r\n
+Accept: *.*\r\n
+\r\n
+</code></pre>
+<p>HTTP协议采用“请求-应答”模式，当使用普通模式，每个请求/应答客户和服务器都要新建一个连接，完成之后立即断开连接；当使用Keep-Alive模式时，客户端到服务器端的连接持续有效。<br>http 1.0中默认是关闭的，需要在http头加入”Connection: Keep-Alive”，才能启用Keep-Alive；http 1.1中默认启用Keep-Alive，如果加入”Connection: close “，才关闭。目前大部分浏览器都是用http1.1协议，也就是说默认都会发起Keep-Alive的连接请求了，所以是否能完成一个完整的Keep- Alive连接就看服务器设置情况。<br>上面的报文中Keep-Alive: 900,即是希望 WEB 服务器保持连接最长900秒。如果客户端此时发起攻击，每职责10秒发送一次请求，请求的长度小于Content-Length），服务端就会判断出此时还没有接收完所有的请求，就会持续等待，一直到900秒结束，或者是请求总长度发送完成。客户端的攻击的目的，就是尽可能的占用连接资源，导致正常的用户连接无法接入。</p>
+<h3 id="常见场景"><a href="#常见场景" class="headerlink" title="常见场景"></a>常见场景</h3><p>大多出现在默认安装好的Apache Web中，未合理设置客户端连接数导致的。</p>
+<h3 id="测试方案"><a href="#测试方案" class="headerlink" title="测试方案"></a>测试方案</h3><p>使用Slow HTTP Test 工具进行检测<br>Kali Linux 安装 ：apt-get install slowhttptest<br>SlowHTTPTest是一个可配置的应用层拒绝服务攻击测试攻击，它可以工作在Linux，OSX和Cygwin环境以及Windows命令行接口，可以帮助安全测试人员检验服务器对慢速攻击的处理能力。<br>这个工具可以模拟低带宽耗费下的DoS攻击，比如慢速攻击，慢速HTTP POST，通过并发连接池进行的慢速读攻击（基于TCP持久时间）等。慢速攻击基于HTTP协议，通过精心的设计和构造，这种特殊的请求包会造成服务器延时，而当服务器负载能力消耗过大即会导致拒绝服务。</p>
+<p>慢速传递HTTP报文，占用服务器资源<br>slowhttptest -c 65500 -H -i 10 -r 200 -s 8192 -t SLOWHEADER -u <a href="http://payloads.online" target="_blank" rel="noopener">http://payloads.online</a></p>
+<p>慢速读取应答消息，占用服务器资源<br>slowhttptest -c 65500 -X -r 1000 -w 10 -y 20 -t SLOWREAD -n 5 -z 32 -u <a href="http://payloads.online" target="_blank" rel="noopener">http://payloads.online</a></p>
+<p>构造数据缓慢传输POST数据包，使服务器端一直等待接收报文<br>slowhttptest -c 65500 -B -i 10 -r 200 -s 8192 -t SLOWBODY -u <a href="http://payloads.online" target="_blank" rel="noopener">http://payloads.online</a></p>
+<h3 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h3><p>1.设置合适的 timeout 时间（Apache 已默认启用了 reqtimeout 模块），规定了Header发送的时间以及频率和 Body 发送的时间以及频率<br>2.增大 MaxClients(MaxRequestWorkers)：增加最大的连接数。<br>3.默认安装的 Apache 存在 Slow Attack 的威胁，原因就是虽然设置的 timeoute，但是最大连接数不够，如果攻击的请求频率足够大，仍然会占满 Apache 的所有连接</p>
+<h3 id="服务器应用程序修复方案"><a href="#服务器应用程序修复方案" class="headerlink" title="服务器应用程序修复方案"></a>服务器应用程序修复方案</h3><ul>
+<li><p>Weblogic<br>1、在配置管理界面中的协议-&gt;一般信息下设置 完成消息超时时间小于400<br>2、在配置管理界面中的协议-&gt;HTTP下设置 POST 超时、持续时间、最大 POST 大小为安全值范围。</p>
+</li>
+<li><p>Nginx<br>1、通过调整$request_method，配置服务器接受http包的操作限制；<br>2、在保证业务不受影响的前提下，调整client_max_body_size, client_body_buffer_size, client_header_buffer_size,large_client_header_buffersclient_body_timeout, client_header_timeout的值，必要时可以适当的增加；<br>3、对于会话或者相同的ip地址，可以使用HttpLimitReqModule and HttpLimitZoneModule参数去限制请求量或者并发连接数；<br>4、根据CPU和负载的大小，来配置worker_processes 和 worker_connections的值，公式是：max_clients = worker_processes * worker_connections。</p>
+</li>
+<li><p>Apache<br>建议使用mod_reqtimeout和mod_qos两个模块相互配合来防护。<br>1、mod_reqtimeout用于控制每个连接上请求发送的速率。配置例如： #请求头部分，设置超时时间初始为10秒，并在收到客户端发送的数据后，每接收到500字节数据就将超时时间延长1秒，但最长不超过40秒。可以防护slowloris型的慢速攻击。 RequestReadTimeout header=10-40,minrate=500 #请求正文部分，设置超时时间初始为10秒，并在收到客户端发送的数据后，每接收到500字节数据就将超时时间延长1秒，但最长不超过40秒。可以防护slow message body型的慢速攻击。 RequestReadTimeout body=10-40,minrate=500 需注意，对于HTTPS站点，需要把初始超时时间上调，比如调整到20秒。<br>2、mod_qos用于控制并发连接数,两个数值可以根据服务器的性能调整.配置例如：<br>当服务器并发连接数超过600时，关闭keepalive:QS_SrvMaxConnClose 600<br>限制每个源IP最大并发连接数为50:QS_SrvMaxConnPerIP 50 </p>
+</li>
+<li><p>IHS服务器<br>请您先安装最新补丁包，然后启用mod_reqtimeout模块，在配置文件中加入：<br>LoadModule reqtimeout_module modules/mod_reqtimeout.so<br>为mod_reqtimeout模块添加配置：</p>
+<pre><code class="bash">&lt;IfModule mod_reqtimeout.c&gt;
+RequestReadTimeout header=10-40,MinRate=500 body=10-40,MinRate=500
+&lt;/IfModule&gt;
+</code></pre>
+<p>对于HTTPS站点，建议header=20-40,MinRate=500。<br>参见：<a href="http://www-01.ibm.com/support/docview.wss?uid=swg21652165" target="_blank" rel="noopener">http://www-01.ibm.com/support/docview.wss?uid=swg21652165</a></p>
+</li>
+<li><p>F5负载均衡修复建议<br>F5负载均衡设备有相应的防护模块，如无购买可参考附件中的详细配置过程。</p>
+</li>
+</ul>
+<p>关于F5的慢速攻击防护配置，请参考以下链接：<br><a href="https://support.f5.com/kb/en-us/solutions/public/10000/200/sol10260.html" target="_blank" rel="noopener">https://support.f5.com/kb/en-us/solutions/public/10000/200/sol10260.html</a><br><a href="https://devcentral.f5.com/articles/mitigating-slow-http-post-ddos-attacks-with-irules-ndash-follow-up" target="_blank" rel="noopener">https://devcentral.f5.com/articles/mitigating-slow-http-post-ddos-attacks-with-irules-ndash-follow-up</a></p>
+<ul>
+<li>tomcat服务器<br>解决方案：<br>1、设置Tomcat / server.xml文件 connectiontimeout 值，默认为20000ms，修改为8000ms(Tomcat 自身安全漏洞)<br>2、公共JS中设置AJAX的全局timeout时间（默认为30000ms） $.ajaxSetup({timeout:8000}).<br> 或tomcat容器 web.xml 中配置<pre><code class="bash">&lt;session-config&gt;
+     &lt;session-timeout&gt;8&lt;/session-timeout&gt;
+&lt;/session-config&gt;
+</code></pre>
+</li>
+</ul>
+
       
 
       
@@ -198,6 +243,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">安全漏洞</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       <span id="busuanzi_container_page_pv">| 阅读量(<span id="busuanzi_value_page_pv"></span>)</span>
       
 
@@ -249,7 +305,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/about/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/02/28/security holes/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -261,6 +317,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2019/02/26/confluence maintain/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">confluence 维护手册</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -275,6 +341,19 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Slow-HTTP-DOS"><span class="toc-number">1.</span> <span class="toc-text">Slow HTTP DOS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">1.2.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见场景"><span class="toc-number">1.3.</span> <span class="toc-text">常见场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试方案"><span class="toc-number">1.4.</span> <span class="toc-text">测试方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修复方案"><span class="toc-number">1.5.</span> <span class="toc-text">修复方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务器应用程序修复方案"><span class="toc-number">1.6.</span> <span class="toc-text">服务器应用程序修复方案</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
@@ -285,7 +364,7 @@
   
 
   
-  <div id="SOHUCS" sid=""></div> 
+  <div id="SOHUCS" sid="security holes"></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js"></script>
 <script type="text/javascript">
     window.changyan.api.config({
@@ -330,7 +409,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
