@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://qiniu.qinjj.tech/static/images/confluenceInstall/21.png">
 <meta property="og:image" content="http://qiniu.qinjj.tech/static/images/confluenceInstall/22.png">
 <meta property="og:image" content="http://qiniu.qinjj.tech/static/images/confluenceInstall/23.png">
-<meta property="og:updated_time" content="2019-03-18T06:36:46.233Z">
+<meta property="og:updated_time" content="2019-03-18T06:57:54.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="confluence 安装及破解">
 <meta name="twitter:description" content="新的一年要勇敢的迈出第一步，尝试去做做代码以外的工作，先从文档管理下手，第一步想到要建立一个团队的知识共享机制，原来团队的资源都存放在SVN上，搜索及管理很不方便，而且没有专人去监督管理，文档质量也是参差不齐，同事离职交接也是个大问题。对比了几个知识库产品后，比如dukuwiki,tikiwiki，发现还是confluence最强大，只是它是收费的。 confluence是什么？   conflu">
@@ -381,6 +381,8 @@ bash-4.2$
 </ul>
 <img src="http://qiniu.qinjj.tech/static/images/confluenceInstall/3.png">
 <p>先把服务器ID copy下来，然后在服务器上执行命令：<br><em>java -jar /home/confluence/atlassian/atlassian-agent.jar -p conf -m <a href="mailto:aaa@bbb.com" target="_blank" rel="noopener">aaa@bbb.com</a> -n my_name -o <a href="https://zhile.io" target="_blank" rel="noopener">https://zhile.io</a> -s B3N1-KDPW-IYEI-14CE</em><br>参数的说明：<br> -p conf(安装的是confluence产品)<br> -m <a href="mailto:aaa@bbb.com" target="_blank" rel="noopener">aaa@bbb.com</a>(随意写)<br> -n my_name(随意写)<br> -o <a href="https://zhile.io" target="_blank" rel="noopener">https://zhile.io</a> (随意写)<br> -s B3N1-KDPW-IYEI-14CE (即当前的页面中显示的服务器ID)</p>
+<p>如果上个页面中也选择了安装团队日程表，则可执行下面的命令获得授权码：<br><em>java -jar /home/confluence/atlassian/atlassian-agent.jar -p tc -m <a href="mailto:aaa@bbb.com" target="_blank" rel="noopener">aaa@bbb.com</a> -n my_name -o <a href="https://zhile.io" target="_blank" rel="noopener">https://zhile.io</a> -s B3N1-KDPW-IYEI-14CE</em></p>
+<p>如果上个页面中也选择了Confluence Questions表，则可执行下面的命令获得授权码：<br><em>java -jar /home/confluence/atlassian/atlassian-agent.jar -p questions -m <a href="mailto:aaa@bbb.com" target="_blank" rel="noopener">aaa@bbb.com</a> -n my_name -o <a href="https://zhile.io" target="_blank" rel="noopener">https://zhile.io</a> -s B3N1-KDPW-IYEI-14CE</em></p>
 <pre><code class="bash">bash-4.2$ java -jar /home/confluence/atlassian/atlassian-agent.jar -p conf -m aaa@bbb.com -n my_name -o https://zhile.io -s B3N1-KDPW-IYEI-14CE
 
 ====================================================
@@ -719,11 +721,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文档管理</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">文档管理</a>
               </li>
              
               <li class="article-tag-list-item">
