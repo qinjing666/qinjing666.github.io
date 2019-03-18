@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://qiniu.qinjj.tech/static/images/confluenceInstall/21.png">
 <meta property="og:image" content="http://qiniu.qinjj.tech/static/images/confluenceInstall/22.png">
 <meta property="og:image" content="http://qiniu.qinjj.tech/static/images/confluenceInstall/23.png">
-<meta property="og:updated_time" content="2019-02-18T06:13:47.643Z">
+<meta property="og:updated_time" content="2019-03-18T02:54:08.283Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="confluence 安装及破解">
 <meta name="twitter:description" content="新的一年要勇敢的迈出第一步，尝试去做做代码以外的工作，先从文档管理下手，第一步想到要建立一个团队的知识共享机制，原来团队的资源都存放在SVN上，搜索及管理很不方便，而且没有专人去监督管理，文档质量也是参差不齐，同事离职交接也是个大问题。对比了几个知识库产品后，比如dukuwiki,tikiwiki，发现还是confluence最强大，只是它是收费的。 confluence是什么？   conflu">
@@ -350,7 +350,7 @@ Using CATALINA_PID:    /home/confluence/atlassian/confluence/work/catalina.pid
 Tomcat started.
 bash-4.2$ 
 </code></pre>
-<p>Tomcat started.即证明程序已经启动了。<br>下一步执行查看日志命令：tail -f /home/confluence/atlassian/confluence/catalina.out</p>
+<p>Tomcat started.即证明程序已经启动了。<br>下一步执行查看日志命令：tail -f /home/confluence/atlassian/confluence/logs/catalina.out</p>
 <pre><code class="bash">ion.RequestMappingHandlerMapping.register Mapped <span class="string">"{[/healthcheck]}"</span> onto public com.atlassian.synchrony.proxy.web.HealthCheckResult com.atlassian.synchrony.proxy.web.SynchronyProxyRestController.getSynchronyProxyInfo()
 04-Jan-2019 17:04:19.140 INFO [localhost-startStop-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.register Mapped <span class="string">"{[/reload],methods=[PUT]}"</span> onto public org.springframework.http.ResponseEntity com.atlassian.synchrony.proxy.web.SynchronyProxyRestController.reloadConfiguration(com.atlassian.synchrony.proxy.web.SynchronyProxyConfigPayload)
 04-Jan-2019 17:04:19.211 INFO [localhost-startStop-2] org.springframework.context.support.DefaultLifecycleProcessor.start Starting beans <span class="keyword">in</span> phase 2147483647
