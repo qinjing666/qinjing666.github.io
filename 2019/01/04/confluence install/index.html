@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://qiniu.qinjj.tech/static/images/confluenceInstall/21.png">
 <meta property="og:image" content="http://qiniu.qinjj.tech/static/images/confluenceInstall/22.png">
 <meta property="og:image" content="http://qiniu.qinjj.tech/static/images/confluenceInstall/23.png">
-<meta property="og:updated_time" content="2019-06-11T09:13:03.447Z">
+<meta property="og:updated_time" content="2019-07-04T03:28:48.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="confluence 安装及破解">
 <meta name="twitter:description" content="新的一年要勇敢的迈出第一步，尝试去做做代码以外的工作，先从文档管理下手，第一步想到要建立一个团队的知识共享机制，原来团队的资源都存放在SVN上，搜索及管理很不方便，而且没有专人去监督管理，文档质量也是参差不齐，同事离职交接也是个大问题。对比了几个知识库产品后，比如dukuwiki,tikiwiki，发现还是confluence最强大，只是它是收费的。 confluence是什么？   conflu">
@@ -361,7 +361,7 @@ bash-4.2$
 
 </code></pre>
 <p>当日志文件中出现了”========= agent working =====”，证明破解程序已经加进去了，如下所示：</p>
-<h4 id="5-开始配置confluence"><a href="#5-开始配置confluence" class="headerlink" title="5. 开始配置confluence"></a>5. 开始配置confluence</h4><p><strong>安装之前请务必记住两点：<br>1、始终只打开着一个浏览器安装引导页面<br>2、关闭VPN软件<br>3、如果是安装过程中手欠填错信息，或感觉填的不完美，配置都写入了/home/confluence/atlassian/application-data/confluence/confluence.cfg.xml文件中，可通过修改文件中的相应的配置项，并重启即可完成更改（比如更换数据库）。<br>  如果想重新配置confluence，则可删除此文件 ，然后重启程序。再次打开时，又会从设置语言开始。
+<h4 id="5-开始配置confluence"><a href="#5-开始配置confluence" class="headerlink" title="5. 开始配置confluence"></a>5. 开始配置confluence</h4><p><strong>安装之前请务必记住两点：<br>1、始终只打开着一个浏览器安装引导页面<br>2、关闭VPN软件<br>3、如果是安装过程中手欠填错信息，或感觉填的不完美，配置都写入了/home/confluence/atlassian/application-data/confluence/confluence.cfg.xml文件中，可通过修改文件中的相应的配置项，并重启即可完成更改（比如更换数据库）。<br>4、如果想重新配置confluence，则可删除此文件 ，然后重启程序。再次打开时，又会从设置语言开始。<br>5、confluence崩溃重启导致了confluence.cfg.xml损坏，报错：Confluence: Unable to bootstrap application）,则可以设置文件vi confluence/WEB-INF/classes/confluence-init.properties<br>   confluence.home = /home/confluence/atlassian/application-data/confluence20190704<br>   将此目录设置成新的目录，即又会从设置语言开始，到安装最后一步时，可选择备份文件进行还原。
 </strong></p>
 <p>打开浏览器，输入地址：<a href="http://10.1.198.148:8090/" target="_blank" rel="noopener">http://10.1.198.148:8090/</a></p>
 <ul>
@@ -720,11 +720,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">安全漏洞</a>
+                <a href="javascript:void(0)" class="js-tag color5">文档管理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文档管理</a>
+                <a href="javascript:void(0)" class="js-tag color5">安全漏洞</a>
               </li>
              
               <li class="article-tag-list-item">
