@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://qiniu.qinjj.tech/static/images/confluenceInstall/21.png">
 <meta property="og:image" content="http://qiniu.qinjj.tech/static/images/confluenceInstall/22.png">
 <meta property="og:image" content="http://qiniu.qinjj.tech/static/images/confluenceInstall/23.png">
-<meta property="og:updated_time" content="2019-07-04T03:28:48.238Z">
+<meta property="og:updated_time" content="2019-07-26T09:31:42.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="confluence 安装及破解">
 <meta name="twitter:description" content="新的一年要勇敢的迈出第一步，尝试去做做代码以外的工作，先从文档管理下手，第一步想到要建立一个团队的知识共享机制，原来团队的资源都存放在SVN上，搜索及管理很不方便，而且没有专人去监督管理，文档质量也是参差不齐，同事离职交接也是个大问题。对比了几个知识库产品后，比如dukuwiki,tikiwiki，发现还是confluence最强大，只是它是收费的。 confluence是什么？   conflu">
@@ -301,7 +301,7 @@ Finishing installation ...
 </code></pre>
 <p>出现上述的文字，证明已经安装成功了</p>
 <h4 id="2-破解confluence"><a href="#2-破解confluence" class="headerlink" title="2. 破解confluence"></a>2. 破解confluence</h4><p>将破解程序放至一个目录下，如下所示（这个目录随意）</p>
-<pre><code class="bash">[root@R540-148 atlassian]<span class="comment"># mv /root/atlassian-agent.jar  /home/confluence/atlassian/</span>
+<pre><code class="bash">[root@R540-148 atlassian]<span class="comment"># cp /root/atlassian-agent.jar  /home/confluence/atlassian/</span>
 </code></pre>
 <p>然后编辑java启动加载类文件配置，</p>
 <pre><code class="bash">[root@R540-148 atlassian]<span class="comment"># vi /home/confluence/atlassian/confluence/bin/setenv.sh</span>
@@ -322,7 +322,7 @@ CATALINA_OPTS=<span class="string">"-Dorg.apache.tomcat.websocket.DEFAULT_BUFFER
 CATALINA_OPTS=<span class="string">"<span class="variable">${START_CONFLUENCE_JAVA_OPTS}</span> <span class="variable">${CATALINA_OPTS}</span>"</span>
 CATALINA_OPTS=<span class="string">"-Dconfluence.context.path=<span class="variable">${CONFLUENCE_CONTEXT_PATH}</span> <span class="variable">${CATALINA_OPTS}</span>"</span>
 </code></pre>
-<h4 id="3-安装mysql驱动"><a href="#3-安装mysql驱动" class="headerlink" title="3. 安装mysql驱动"></a>3. 安装mysql驱动</h4><pre><code class="bash">[root@R540-148 atlassian]<span class="comment"># mv /root/mysql-connector-java-5.1.42-bin.jar /home/confluence/atlassian/confluence/confluence/WEB-INF/lib/</span>
+<h4 id="3-安装mysql驱动"><a href="#3-安装mysql驱动" class="headerlink" title="3. 安装mysql驱动"></a>3. 安装mysql驱动</h4><pre><code class="bash">[root@R540-148 atlassian]<span class="comment"># cp /root/mysql-connector-java-5.1.42-bin.jar /home/confluence/atlassian/confluence/confluence/WEB-INF/lib/</span>
 </code></pre>
 <h4 id="4-启动程序"><a href="#4-启动程序" class="headerlink" title="4. 启动程序"></a>4. 启动程序</h4><p>最好使用confluence用户启动</p>
 <pre><code class="bash">[root@R540-148 atlassian]<span class="comment"># su confluence</span>
@@ -404,7 +404,7 @@ Your license code(Don<span class="string">'t copy this line!!!): </span>
 <li>配置数据库信息<img src="http://qiniu.qinjj.tech/static/images/confluenceInstall/6.png">
 </li>
 </ul>
-<p>输入字符串：jdbc:mysql://10.1.198.148:3306/wiki1?useUnicode=true&amp;characterEncoding=UTF-8<br>请注意修改IP:端口/数据库名，如果选择简单模式配置的话，不会生成 ?useUnicode=true&amp;characterEncoding=UTF-8 字符集配置，可通过修改confluence.cfg.xml文件，在jdbc处添加上此配置，否则可能会有中文乱码问题。<br>点下一步之前，先测试连接，确认无误再继续。</p>
+<p>输入字符串：jdbc:mysql://10.1.198.192:3306/wiki1?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false<br>请注意修改IP:端口/数据库名，如果选择简单模式配置的话，不会生成 ?useUnicode=true&amp;characterEncoding=UTF-8 字符集配置，可通过修改confluence.cfg.xml文件，在jdbc处添加上此配置，否则可能会有中文乱码问题。<br>点下一步之前，先测试连接，确认无误再继续。</p>
 <p>这个需要点时间，耐点等一会儿。完成后请确认DB中是否已经创建好表，日志是否有报错，一切正常会出现下个页面。</p>
 <ul>
 <li><p>配置管理员信息等</p>
@@ -720,11 +720,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文档管理</a>
+                <a href="javascript:void(0)" class="js-tag color5">安全漏洞</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">安全漏洞</a>
+                <a href="javascript:void(0)" class="js-tag color5">文档管理</a>
               </li>
              
               <li class="article-tag-list-item">
